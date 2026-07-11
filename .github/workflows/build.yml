@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:
+  contents: write
+
 env:
   VERSION: 1.0.6
   BUILD_CONFIGURATION: Release
