@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<!-- Autospell window: one row per currently-memorized spell gem
+	     #autospell can toggle automatic casting of. Unlike the Autoskill
+	     window's fixed skill table, the row count here varies per character —
+	     empty gems are skipped server-side, so the list is only ever as long
+	     as however many gems are actually memorized. Click a row to toggle it
+	     — green "ON" / red "OFF" — same SIDL + WndNotification pattern as
+	     every other native window in this repo. No gray/N/A state (there's
+	     nothing to show for an empty gem), and the Status cell IS the toggle
+	     button, colored via ListSetCellColor exactly like the Autoskill and
+	     Celestial Bank windows, since there's no verified primitive to
+	     recolor a standalone Button's text at runtime on this client build. -->
+
+	<Listbox item="ASPW_ItemList">
+		<ScreenID>ASPW_ItemList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Click a row to toggle automatic casting of that spell. Green ON = enabled, Red OFF = disabled.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>32</Y></Location>
+		<Size><CX>260</CX><CY>250</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>170</Width><Heading>Spell</Heading></Columns>
+		<Columns><Width>70</Width><Heading>Status</Heading></Columns>
+	</Listbox>
+
+	<Button item="ASPW_RefreshButton">
+		<ScreenID>ASPW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>292</Y></Location>
+		<Size><CX>80</CX><CY>24</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Label item="ASPW_StatusLabel">
+		<ScreenID>ASPW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>322</Y></Location>
+		<Size><CX>260</CX><CY>20</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>false</NoWrap>
+	</Label>
+
+	<Screen item="NativeAutospellWnd">
+		<ScreenID>NativeAutospellWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>140</X><Y>80</Y></Location>
+		<Size><CX>280</CX><CY>375</CY></Size>
+		<Text>Autospell</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>ASPW_ItemList</Pieces>
+		<Pieces>ASPW_RefreshButton</Pieces>
+		<Pieces>ASPW_StatusLabel</Pieces>
+	</Screen>
+
+</XML>

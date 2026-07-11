@@ -1,0 +1,472 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<!-- Class icons (WarriorIcon, ClericIcon, "Shadow KnightIcon", etc. — 32
+	     of them, one Icon + one DisabledIcon per playable class) are NOT
+	     redefined here. They're already declared as Ui2DAnimation items in
+	     the base client's EQUI_CharacterCreate.xml (its race/class picker),
+	     and SIDL registers Ui2DAnimation names globally across every loaded
+	     UI file in the skin, so any window can reference them by name once
+	     that file has loaded — which it always has, since character
+	     creation is a base screen every client ships. Same for the
+	     SelectIcon/HoverIcon overlay decals used as PressedDecal/FlybyDecal
+	     below. Confirmed present under these exact names in the RoF2 (May
+	     10 2013) client's own EQUI_CharacterCreate.xml. -->
+
+	<Label item="PW_SummaryLabel">
+		<ScreenID>PW_SummaryLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>12</X><Y>18</Y></Location>
+		<Size><CX>380</CX><CY>20</CY></Size>
+		<Text>Active: Warrior (Level 1)</Text>
+		<TextColor><R>220</R><G>230</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="PW_RefreshButton">
+		<ScreenID>PW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>408</X><Y>14</Y></Location>
+		<Size><CX>72</CX><CY>22</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<!-- Class grid (left, 4x4 icon buttons, one RadioGroup) + detail pane
+	     (right: title/description + Switch button), inspired by the RoF2
+	     character-creation race/class picker's icon-grid layout. -->
+
+	<Button item="PW_Class_Warrior_Button">
+		<ScreenID>PW_Class_Warrior_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>12</X><Y>46</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Warrior</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>WarriorIcon</Normal>
+			<Pressed>WarriorIcon</Pressed>
+			<Flyby>WarriorIcon</Flyby>
+			<Disabled>WarriorDisabledIcon</Disabled>
+			<PressedFlyby>WarriorIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Cleric_Button">
+		<ScreenID>PW_Class_Cleric_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>60</X><Y>46</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Cleric</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>ClericIcon</Normal>
+			<Pressed>ClericIcon</Pressed>
+			<Flyby>ClericIcon</Flyby>
+			<Disabled>ClericDisabledIcon</Disabled>
+			<PressedFlyby>ClericIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Paladin_Button">
+		<ScreenID>PW_Class_Paladin_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>108</X><Y>46</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Paladin</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>PaladinIcon</Normal>
+			<Pressed>PaladinIcon</Pressed>
+			<Flyby>PaladinIcon</Flyby>
+			<Disabled>PaladinDisabledIcon</Disabled>
+			<PressedFlyby>PaladinIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Ranger_Button">
+		<ScreenID>PW_Class_Ranger_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>156</X><Y>46</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Ranger</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>RangerIcon</Normal>
+			<Pressed>RangerIcon</Pressed>
+			<Flyby>RangerIcon</Flyby>
+			<Disabled>RangerDisabledIcon</Disabled>
+			<PressedFlyby>RangerIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_ShadowKnight_Button">
+		<ScreenID>PW_Class_ShadowKnight_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>12</X><Y>94</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Shadow Knight</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>Shadow KnightIcon</Normal>
+			<Pressed>Shadow KnightIcon</Pressed>
+			<Flyby>Shadow KnightIcon</Flyby>
+			<Disabled>Shadow KnightDisabledIcon</Disabled>
+			<PressedFlyby>Shadow KnightIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Druid_Button">
+		<ScreenID>PW_Class_Druid_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>60</X><Y>94</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Druid</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>DruidIcon</Normal>
+			<Pressed>DruidIcon</Pressed>
+			<Flyby>DruidIcon</Flyby>
+			<Disabled>DruidDisabledIcon</Disabled>
+			<PressedFlyby>DruidIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Monk_Button">
+		<ScreenID>PW_Class_Monk_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>108</X><Y>94</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Monk</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>MonkIcon</Normal>
+			<Pressed>MonkIcon</Pressed>
+			<Flyby>MonkIcon</Flyby>
+			<Disabled>MonkDisabledIcon</Disabled>
+			<PressedFlyby>MonkIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Bard_Button">
+		<ScreenID>PW_Class_Bard_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>156</X><Y>94</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Bard</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>BardIcon</Normal>
+			<Pressed>BardIcon</Pressed>
+			<Flyby>BardIcon</Flyby>
+			<Disabled>BardDisabledIcon</Disabled>
+			<PressedFlyby>BardIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Rogue_Button">
+		<ScreenID>PW_Class_Rogue_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>12</X><Y>142</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Rogue</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>RogueIcon</Normal>
+			<Pressed>RogueIcon</Pressed>
+			<Flyby>RogueIcon</Flyby>
+			<Disabled>RogueDisabledIcon</Disabled>
+			<PressedFlyby>RogueIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Shaman_Button">
+		<ScreenID>PW_Class_Shaman_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>60</X><Y>142</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Shaman</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>ShamanIcon</Normal>
+			<Pressed>ShamanIcon</Pressed>
+			<Flyby>ShamanIcon</Flyby>
+			<Disabled>ShamanDisabledIcon</Disabled>
+			<PressedFlyby>ShamanIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Necromancer_Button">
+		<ScreenID>PW_Class_Necromancer_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>108</X><Y>142</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Necromancer</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>NecromancerIcon</Normal>
+			<Pressed>NecromancerIcon</Pressed>
+			<Flyby>NecromancerIcon</Flyby>
+			<Disabled>NecromancerDisabledIcon</Disabled>
+			<PressedFlyby>NecromancerIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Wizard_Button">
+		<ScreenID>PW_Class_Wizard_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>156</X><Y>142</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Wizard</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>WizardIcon</Normal>
+			<Pressed>WizardIcon</Pressed>
+			<Flyby>WizardIcon</Flyby>
+			<Disabled>WizardDisabledIcon</Disabled>
+			<PressedFlyby>WizardIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Magician_Button">
+		<ScreenID>PW_Class_Magician_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>12</X><Y>190</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Magician</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>MagicianIcon</Normal>
+			<Pressed>MagicianIcon</Pressed>
+			<Flyby>MagicianIcon</Flyby>
+			<Disabled>MagicianDisabledIcon</Disabled>
+			<PressedFlyby>MagicianIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Enchanter_Button">
+		<ScreenID>PW_Class_Enchanter_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>60</X><Y>190</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Enchanter</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>EnchanterIcon</Normal>
+			<Pressed>EnchanterIcon</Pressed>
+			<Flyby>EnchanterIcon</Flyby>
+			<Disabled>EnchanterDisabledIcon</Disabled>
+			<PressedFlyby>EnchanterIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Beastlord_Button">
+		<ScreenID>PW_Class_Beastlord_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>108</X><Y>190</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Beastlord</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>BeastlordIcon</Normal>
+			<Pressed>BeastlordIcon</Pressed>
+			<Flyby>BeastlordIcon</Flyby>
+			<Disabled>BeastlordDisabledIcon</Disabled>
+			<PressedFlyby>BeastlordIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Button item="PW_Class_Berserker_Button">
+		<ScreenID>PW_Class_Berserker_Button</ScreenID>
+		<RadioGroup>PW_ClassGrid</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>156</X><Y>190</Y></Location>
+		<Size><CX>48</CX><CY>48</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Berserker</TooltipReference>
+		<ButtonDrawTemplate>
+			<PressedDecal>SelectIcon</PressedDecal>
+			<FlybyDecal>HoverIcon</FlybyDecal>
+			<Normal>BerserkerIcon</Normal>
+			<Pressed>BerserkerIcon</Pressed>
+			<Flyby>BerserkerIcon</Flyby>
+			<Disabled>BerserkerDisabledIcon</Disabled>
+			<PressedFlyby>BerserkerIcon</PressedFlyby>
+		</ButtonDrawTemplate>
+		<DecalOffset><X>0</X><Y>0</Y></DecalOffset>
+		<DecalSize><CX>48</CX><CY>48</CY></DecalSize>
+	</Button>
+
+	<Label item="PW_DetailTitleLabel">
+		<ScreenID>PW_DetailTitleLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>224</X><Y>46</Y></Location>
+		<Size><CX>256</CX><CY>22</CY></Size>
+		<Text>Select a class</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Label item="PW_DetailDescriptionLabel">
+		<ScreenID>PW_DetailDescriptionLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>224</X><Y>72</Y></Location>
+		<Size><CX>256</CX><CY>100</CY></Size>
+		<Text></Text>
+		<TextColor><R>210</R><G>220</G><B>235</B></TextColor>
+		<NoWrap>false</NoWrap>
+	</Label>
+
+	<Button item="PW_SwitchButton">
+		<ScreenID>PW_SwitchButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>224</X><Y>176</Y></Location>
+		<Size><CX>140</CX><CY>26</CY></Size>
+		<Text>Switch</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Switch to the selected class (city zones only) - clears buffs, pet, and memorized spells. 30 second cooldown between switches.</TooltipReference>
+	</Button>
+
+	<Button item="PW_LoadoutButton">
+		<ScreenID>PW_LoadoutButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>224</X><Y>210</Y></Location>
+		<Size><CX>140</CX><CY>26</CY></Size>
+		<Text>Loadout</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open your Celestial Loadout store</TooltipReference>
+	</Button>
+
+	<Label item="PW_StatusLabel">
+		<ScreenID>PW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>12</X><Y>246</Y></Location>
+		<Size><CX>468</CX><CY>40</CY></Size>
+		<Text>Open with #persona show. Switching is only available in city zones, has a 30 second cooldown, and clears buffs, pet, and memorized spells.</Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>false</NoWrap>
+	</Label>
+
+	<Screen item="NativePersonaWnd">
+		<ScreenID>NativePersonaWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>100</X><Y>80</Y></Location>
+		<Size><CX>492</CX><CY>320</CY></Size>
+		<Text>Persona</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>PW_SummaryLabel</Pieces>
+		<Pieces>PW_RefreshButton</Pieces>
+		<Pieces>PW_Class_Warrior_Button</Pieces>
+		<Pieces>PW_Class_Cleric_Button</Pieces>
+		<Pieces>PW_Class_Paladin_Button</Pieces>
+		<Pieces>PW_Class_Ranger_Button</Pieces>
+		<Pieces>PW_Class_ShadowKnight_Button</Pieces>
+		<Pieces>PW_Class_Druid_Button</Pieces>
+		<Pieces>PW_Class_Monk_Button</Pieces>
+		<Pieces>PW_Class_Bard_Button</Pieces>
+		<Pieces>PW_Class_Rogue_Button</Pieces>
+		<Pieces>PW_Class_Shaman_Button</Pieces>
+		<Pieces>PW_Class_Necromancer_Button</Pieces>
+		<Pieces>PW_Class_Wizard_Button</Pieces>
+		<Pieces>PW_Class_Magician_Button</Pieces>
+		<Pieces>PW_Class_Enchanter_Button</Pieces>
+		<Pieces>PW_Class_Beastlord_Button</Pieces>
+		<Pieces>PW_Class_Berserker_Button</Pieces>
+		<Pieces>PW_DetailTitleLabel</Pieces>
+		<Pieces>PW_DetailDescriptionLabel</Pieces>
+		<Pieces>PW_SwitchButton</Pieces>
+		<Pieces>PW_LoadoutButton</Pieces>
+		<Pieces>PW_StatusLabel</Pieces>
+	</Screen>
+</XML>

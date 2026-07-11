@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<!-- Custom quick-launch bar: one-click access to the Starfall native
+	     windows (Advanced Loot, Persona, Celestial Bank). There is no editable
+	     client resource for the built-in EQ-button cascade menu, so this is a
+	     small always-visible native window instead — same SIDL + WndNotification
+	     pattern as EQUI_NativePersonaWnd.xml / EQUI_NativeCelestialBankWnd.xml.
+	     Each button is a one-click open/close TOGGLE (see custom_menu_feature.cpp);
+	     gold accent color ties this window's branding to the multi-select
+	     highlight used in the Celestial Bank window. -->
+
+	<Label item="CUST_SubtitleLabel">
+		<ScreenID>CUST_SubtitleLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>18</Y></Location>
+		<Size><CX>134</CX><CY>16</CY></Size>
+		<Text>Quick Launch</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CUST_AutoLootButton">
+		<ScreenID>CUST_AutoLootButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>38</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Advanced Loot</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Advanced Loot window</TooltipReference>
+	</Button>
+
+	<Button item="CUST_PersonaButton">
+		<ScreenID>CUST_PersonaButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>64</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Persona</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Persona window</TooltipReference>
+	</Button>
+
+	<Button item="CUST_CelestialBankButton">
+		<ScreenID>CUST_CelestialBankButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>90</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Celestial Bank</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Celestial Bank window</TooltipReference>
+	</Button>
+
+	<Button item="CUST_AutoskillButton">
+		<ScreenID>CUST_AutoskillButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>116</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Autoskill</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Autoskill window</TooltipReference>
+	</Button>
+
+	<Button item="CUST_AutospellButton">
+		<ScreenID>CUST_AutospellButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>142</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Autospell</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Autospell window</TooltipReference>
+	</Button>
+
+	<Screen item="NativeCustomMenuWnd">
+		<ScreenID>NativeCustomMenuWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>20</X><Y>20</Y></Location>
+		<Size><CX>150</CX><CY>198</CY></Size>
+		<Text>Starfall EQEMU</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>false</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>CUST_SubtitleLabel</Pieces>
+		<Pieces>CUST_AutoLootButton</Pieces>
+		<Pieces>CUST_PersonaButton</Pieces>
+		<Pieces>CUST_CelestialBankButton</Pieces>
+		<Pieces>CUST_AutoskillButton</Pieces>
+		<Pieces>CUST_AutospellButton</Pieces>
+	</Screen>
+
+</XML>

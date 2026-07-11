@@ -1,0 +1,1133 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<!-- ═══════════ Main bank window ═══════════
+	     Style_Sizable: the DLL owns the layout via a tick-driven reflow
+	     (SetChildRect), exactly like the AdvLoot window — so every piece is
+	     plain-positioned (no anchors/AutoStretch; the client re-applies SIDL
+	     anchors on every resize of a manually-created window and clobbers any
+	     Location the DLL writes to anchored children). -->
+
+	<Label item="CBW_ViewLabel">
+		<ScreenID>CBW_ViewLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>38</CX><CY>18</CY></Size>
+		<Text>View:</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_ViewAllButton">
+		<ScreenID>CBW_ViewAllButton</ScreenID>
+		<RadioGroup>CBW_ViewGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>50</X><Y>10</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Show every stored item you can see. Depositing in this view auto-sorts: your default scope first, falling back to narrower scopes for items that can't be shared that widely.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBW_ViewAllLabel">
+		<ScreenID>CBW_ViewAllLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>68</X><Y>10</Y></Location>
+		<Size><CX>28</CX><CY>18</CY></Size>
+		<Text>All</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_ViewPersonalButton">
+		<ScreenID>CBW_ViewPersonalButton</ScreenID>
+		<RadioGroup>CBW_ViewGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>100</X><Y>10</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Show only your Personal bank; Deposit puts the cursor item here.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBW_ViewPersonalLabel">
+		<ScreenID>CBW_ViewPersonalLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>118</X><Y>10</Y></Location>
+		<Size><CX>58</CX><CY>18</CY></Size>
+		<Text>Personal</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_ViewAccountButton">
+		<ScreenID>CBW_ViewAccountButton</ScreenID>
+		<RadioGroup>CBW_ViewGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>180</X><Y>10</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Show only your Account bank; Deposit puts the cursor item here.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBW_ViewAccountLabel">
+		<ScreenID>CBW_ViewAccountLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>198</X><Y>10</Y></Location>
+		<Size><CX>56</CX><CY>18</CY></Size>
+		<Text>Account</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_ViewAllianceButton">
+		<ScreenID>CBW_ViewAllianceButton</ScreenID>
+		<RadioGroup>CBW_ViewGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>258</X><Y>10</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Show only your Alliance bank; Deposit puts the cursor item here.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBW_ViewAllianceLabel">
+		<ScreenID>CBW_ViewAllianceLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>276</X><Y>10</Y></Location>
+		<Size><CX>56</CX><CY>18</CY></Size>
+		<Text>Alliance</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Label item="CBW_DefaultLabel">
+		<ScreenID>CBW_DefaultLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>340</X><Y>10</Y></Location>
+		<Size><CX>104</CX><CY>18</CY></Size>
+		<Text>Default: Account</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_DefaultChangeButton">
+		<ScreenID>CBW_DefaultChangeButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>448</X><Y>8</Y></Location>
+		<Size><CX>44</CX><CY>20</CY></Size>
+		<TooltipReference>Cycle your default deposit scope (used by All-view auto deposits): Personal, Account, Alliance.</TooltipReference>
+		<Text>Swap</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Label item="CBW_SearchLabel">
+		<ScreenID>CBW_SearchLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>496</X><Y>10</Y></Location>
+		<Size><CX>48</CX><CY>18</CY></Size>
+		<Text>Search:</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="CBW_SearchEdit">
+		<ScreenID>CBW_SearchEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>548</X><Y>8</Y></Location>
+		<Size><CX>110</CX><CY>20</CY></Size>
+		<TooltipReference>Filter the list by item name or item ID.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="CBW_ClearSearchButton">
+		<ScreenID>CBW_ClearSearchButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>662</X><Y>8</Y></Location>
+		<Size><CX>40</CX><CY>20</CY></Size>
+		<Text>Clear</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Listbox item="CBW_ItemList">
+		<ScreenID>CBW_ItemList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Items stored in your Celestial Bank. Green = withdrawable, deposited by someone else. White = your own. Gray [R] - Name = restricted to that character. [A] = has augments (Personal only). ">>> Name &lt;&lt;&lt;" in gold = selected for a bulk action. Right-click a row to inspect it, double-click to Withdraw All, Ctrl+Click to select multiple rows for Withdraw/Move/Restrict.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>32</Y></Location>
+		<Size><CX>720</CX><CY>252</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>24</Width><Heading></Heading></Columns>
+		<Columns><Width>230</Width><Heading>Item Name</Heading></Columns>
+		<Columns><Width>50</Width><Heading>Charges</Heading></Columns>
+		<Columns><Width>66</Width><Heading>Scope</Heading></Columns>
+		<Columns><Width>50</Width><Heading>Qty</Heading></Columns>
+		<Columns><Width>120</Width><Heading>Depositor</Heading></Columns>
+	</Listbox>
+
+	<!-- Row 1: Move selected to: [Personal][Account][Alliance]   Amount: [__] [Withdraw][Deposit] -->
+	<Label item="CBW_MoveLabel">
+		<ScreenID>CBW_MoveLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>294</Y></Location>
+		<Size><CX>108</CX><CY>18</CY></Size>
+		<Text>Move selected to:</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_MovePersonalButton">
+		<ScreenID>CBW_MovePersonalButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>122</X><Y>292</Y></Location>
+		<Size><CX>68</CX><CY>20</CY></Size>
+		<TooltipReference>Change the selected item's share status to Personal (this character only) without withdrawing it.</TooltipReference>
+		<Text>Personal</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBW_MoveAccountButton">
+		<ScreenID>CBW_MoveAccountButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>194</X><Y>292</Y></Location>
+		<Size><CX>68</CX><CY>20</CY></Size>
+		<TooltipReference>Change the selected item's share status to Account (all your characters) without withdrawing it. The item must pass the Account filter.</TooltipReference>
+		<Text>Account</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBW_MoveAllianceButton">
+		<ScreenID>CBW_MoveAllianceButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>266</X><Y>292</Y></Location>
+		<Size><CX>68</CX><CY>20</CY></Size>
+		<TooltipReference>Change the selected item's share status to Alliance without withdrawing it. The item must pass the Alliance filter (fully tradable).</TooltipReference>
+		<Text>Alliance</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBW_WithdrawButton">
+		<ScreenID>CBW_WithdrawButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>346</X><Y>290</Y></Location>
+		<Size><CX>80</CX><CY>24</CY></Size>
+		<TooltipReference>Withdraw the selected row. Click = enter an exact amount. Shift-click = withdraw everything. Ctrl-click = withdraw exactly 1. (If there's only 1, it just withdraws — no prompt.)</TooltipReference>
+		<Text>Withdraw</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="CBW_DepositButton">
+		<ScreenID>CBW_DepositButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>430</X><Y>290</Y></Location>
+		<Size><CX>80</CX><CY>24</CY></Size>
+		<TooltipReference>Deposits the item (or bag) on your cursor. Platinum is never deposited from here — use the Deposit Plat button instead. A specific View targets that scope; All auto-sorts by your default.</TooltipReference>
+		<Text>Deposit</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="CBW_RestrictToggleButton">
+		<ScreenID>CBW_RestrictToggleButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>520</X><Y>290</Y></Location>
+		<Size><CX>70</CX><CY>24</CY></Size>
+		<TooltipReference>Toggle the SELECTED stored item's restriction in place (restricted -> unrestricted or vice versa) without withdrawing it. Not for Personal items (already single-character).</TooltipReference>
+		<Text>Restrict</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBW_DonatePlatButton">
+		<ScreenID>CBW_DonatePlatButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>600</X><Y>290</Y></Location>
+		<Size><CX>90</CX><CY>24</CY></Size>
+		<TooltipReference>Open a small window to deposit platinum from your purse into the Account or Alliance bank — pick 1/100/1000/Custom/All.</TooltipReference>
+		<Text>Deposit Plat</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<!-- Row 2/3: Account Platinum, then Alliance Platinum directly under it,
+	     left-aligned to match. Platinum is pulled out of the item list
+	     entirely (see the DLL's CommitBankSnapshot) and shown here instead,
+	     each with its own Withdraw button. -->
+	<Label item="CBW_AcctPlatLabel">
+		<ScreenID>CBW_AcctPlatLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>324</Y></Location>
+		<Size><CX>180</CX><CY>18</CY></Size>
+		<Text>Account Platinum: 0</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_AcctPlatWithdrawButton">
+		<ScreenID>CBW_AcctPlatWithdrawButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>196</X><Y>322</Y></Location>
+		<Size><CX>70</CX><CY>22</CY></Size>
+		<TooltipReference>Withdraw banked Account platinum to your purse. Click = enter an exact amount. Shift-click = withdraw everything. Ctrl-click = withdraw exactly 1. (If there's only 1 banked, it just withdraws — no prompt.)</TooltipReference>
+		<Text>Withdraw</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Label item="CBW_AlliPlatLabel">
+		<ScreenID>CBW_AlliPlatLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>356</Y></Location>
+		<Size><CX>180</CX><CY>18</CY></Size>
+		<Text>Alliance Platinum: 0</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBW_AlliPlatWithdrawButton">
+		<ScreenID>CBW_AlliPlatWithdrawButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>196</X><Y>354</Y></Location>
+		<Size><CX>70</CX><CY>22</CY></Size>
+		<TooltipReference>Withdraw banked Alliance platinum to your purse. Click = enter an exact amount. Shift-click = withdraw everything. Ctrl-click = withdraw exactly 1. (If there's only 1 banked, it just withdraws — no prompt.)</TooltipReference>
+		<Text>Withdraw</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<!-- Row 4: [Refresh] [Alliance / Log]                              status -->
+	<Button item="CBW_RefreshButton">
+		<ScreenID>CBW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>388</Y></Location>
+		<Size><CX>80</CX><CY>22</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="CBW_ManageButton">
+		<ScreenID>CBW_ManageButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>94</X><Y>388</Y></Location>
+		<Size><CX>110</CX><CY>22</CY></Size>
+		<TooltipReference>Open the alliance management and transaction log window.</TooltipReference>
+		<Text>Alliance / Log</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="CBW_LoadoutButton">
+		<ScreenID>CBW_LoadoutButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>210</X><Y>388</Y></Location>
+		<Size><CX>90</CX><CY>22</CY></Size>
+		<TooltipReference>Open your Celestial Loadout — equipment stored automatically when you switch persona. Withdraw-only.</TooltipReference>
+		<Text>Loadout</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Label item="CBW_StatusLabel">
+		<ScreenID>CBW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>306</X><Y>390</Y></Location>
+		<Size><CX>424</CX><CY>18</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativeCelestialBankWnd">
+		<ScreenID>NativeCelestialBankWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>100</X><Y>70</Y></Location>
+		<Size><CX>740</CX><CY>430</CY></Size>
+		<Text>Celestial Bank</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>CBW_ViewLabel</Pieces>
+		<Pieces>CBW_ViewAllButton</Pieces>
+		<Pieces>CBW_ViewAllLabel</Pieces>
+		<Pieces>CBW_ViewPersonalButton</Pieces>
+		<Pieces>CBW_ViewPersonalLabel</Pieces>
+		<Pieces>CBW_ViewAccountButton</Pieces>
+		<Pieces>CBW_ViewAccountLabel</Pieces>
+		<Pieces>CBW_ViewAllianceButton</Pieces>
+		<Pieces>CBW_ViewAllianceLabel</Pieces>
+		<Pieces>CBW_DefaultLabel</Pieces>
+		<Pieces>CBW_DefaultChangeButton</Pieces>
+		<Pieces>CBW_SearchLabel</Pieces>
+		<Pieces>CBW_SearchEdit</Pieces>
+		<Pieces>CBW_ClearSearchButton</Pieces>
+		<Pieces>CBW_ItemList</Pieces>
+		<Pieces>CBW_MoveLabel</Pieces>
+		<Pieces>CBW_MovePersonalButton</Pieces>
+		<Pieces>CBW_MoveAccountButton</Pieces>
+		<Pieces>CBW_MoveAllianceButton</Pieces>
+		<Pieces>CBW_WithdrawButton</Pieces>
+		<Pieces>CBW_DepositButton</Pieces>
+		<Pieces>CBW_RestrictToggleButton</Pieces>
+		<Pieces>CBW_AcctPlatLabel</Pieces>
+		<Pieces>CBW_AcctPlatWithdrawButton</Pieces>
+		<Pieces>CBW_AlliPlatLabel</Pieces>
+		<Pieces>CBW_AlliPlatWithdrawButton</Pieces>
+		<Pieces>CBW_DonatePlatButton</Pieces>
+		<Pieces>CBW_RefreshButton</Pieces>
+		<Pieces>CBW_ManageButton</Pieces>
+		<Pieces>CBW_LoadoutButton</Pieces>
+		<Pieces>CBW_StatusLabel</Pieces>
+	</Screen>
+
+	<!-- ═══════════ Management sub-window (alliance + transaction log) ═══════════
+	     Style_Sizable with the same tick-driven reflow as the main window
+	     (the original fixed-size layout was cut off at the bottom on a real
+	     client — plain arithmetic against CY understated how much the
+	     titlebar + WDT_Def's bottom frame actually consume). -->
+
+	<Label item="CBM_AllianceLabel">
+		<ScreenID>CBM_AllianceLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>8</Y></Location>
+		<Size><CX>440</CX><CY>16</CY></Size>
+		<Text>Alliance: none</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Label item="CBM_NameEditLabel">
+		<ScreenID>CBM_NameEditLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>28</Y></Location>
+		<Size><CX>220</CX><CY>16</CY></Size>
+		<Text>Alliance name / character to invite:</Text>
+		<TextColor><R>210</R><G>220</G><B>235</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="CBM_NameEdit">
+		<ScreenID>CBM_NameEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>10</X><Y>46</Y></Location>
+		<Size><CX>190</CX><CY>22</CY></Size>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="CBM_CreateAllianceButton">
+		<ScreenID>CBM_CreateAllianceButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>206</X><Y>45</Y></Location>
+		<Size><CX>92</CX><CY>22</CY></Size>
+		<TooltipReference>Create a new alliance using the name typed to the left (only if you are not already in one).</TooltipReference>
+		<Text>Create</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBM_InviteButton">
+		<ScreenID>CBM_InviteButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>302</X><Y>45</Y></Location>
+		<Size><CX>72</CX><CY>22</CY></Size>
+		<TooltipReference>Invite the character named to the left to your alliance.</TooltipReference>
+		<Text>Invite</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBM_LeaveAllianceButton">
+		<ScreenID>CBM_LeaveAllianceButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>378</X><Y>45</Y></Location>
+		<Size><CX>72</CX><CY>22</CY></Size>
+		<TooltipReference>Leave your current alliance. Items you deposited into the alliance bank stay with the alliance.</TooltipReference>
+		<Text>Leave</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Listbox item="CBM_RosterList">
+		<ScreenID>CBM_RosterList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Members of your alliance, by character name. Rank: Leader/Officer/Member.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>74</Y></Location>
+		<Size><CX>216</CX><CY>110</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>108</Width><Heading>Character</Heading></Columns>
+		<Columns><Width>52</Width><Heading>Rank</Heading></Columns>
+		<Columns><Width>56</Width><Heading>Joined</Heading></Columns>
+	</Listbox>
+
+	<Listbox item="CBM_PendingList">
+		<ScreenID>CBM_PendingList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Alliance invites waiting for your response.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>234</X><Y>74</Y></Location>
+		<Size><CX>216</CX><CY>110</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>128</Width><Heading>Alliance</Heading></Columns>
+		<Columns><Width>72</Width><Heading>Invited</Heading></Columns>
+	</Listbox>
+
+	<Button item="CBM_KickButton">
+		<ScreenID>CBM_KickButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>188</Y></Location>
+		<Size><CX>68</CX><CY>22</CY></Size>
+		<TooltipReference>Remove the selected roster member from your alliance. Leader may remove anyone but themselves; Officer may only remove Members.</TooltipReference>
+		<Text>Kick</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBM_PromoteButton">
+		<ScreenID>CBM_PromoteButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>82</X><Y>188</Y></Location>
+		<Size><CX>68</CX><CY>22</CY></Size>
+		<TooltipReference>Leader only: promote the selected Member to Officer.</TooltipReference>
+		<Text>Promote</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBM_DemoteButton">
+		<ScreenID>CBM_DemoteButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>154</X><Y>188</Y></Location>
+		<Size><CX>64</CX><CY>22</CY></Size>
+		<TooltipReference>Leader only: demote the selected Officer back to Member.</TooltipReference>
+		<Text>Demote</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBM_AcceptButton">
+		<ScreenID>CBM_AcceptButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>234</X><Y>188</Y></Location>
+		<Size><CX>104</CX><CY>22</CY></Size>
+		<TooltipReference>Accept the selected alliance invite.</TooltipReference>
+		<Text>Accept</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Button item="CBM_DeclineButton">
+		<ScreenID>CBM_DeclineButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>346</X><Y>188</Y></Location>
+		<Size><CX>104</CX><CY>22</CY></Size>
+		<TooltipReference>Decline the selected alliance invite.</TooltipReference>
+		<Text>Decline</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Label item="CBM_LogLabel">
+		<ScreenID>CBM_LogLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>216</Y></Location>
+		<Size><CX>340</CX><CY>16</CY></Size>
+		<Text>Recent activity (last 100)</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBM_LogRefreshButton">
+		<ScreenID>CBM_LogRefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>378</X><Y>212</Y></Location>
+		<Size><CX>72</CX><CY>20</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_SmallNormal</Template>
+	</Button>
+
+	<Listbox item="CBM_LogList">
+		<ScreenID>CBM_LogList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Recent deposits and withdrawals visible to you.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>234</Y></Location>
+		<Size><CX>440</CX><CY>170</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>92</Width><Heading>When</Heading></Columns>
+		<Columns><Width>82</Width><Heading>Who</Heading></Columns>
+		<Columns><Width>60</Width><Heading>Action</Heading></Columns>
+		<Columns><Width>128</Width><Heading>Item</Heading></Columns>
+		<Columns><Width>34</Width><Heading>Qty</Heading></Columns>
+		<Columns><Width>56</Width><Heading>Scope</Heading></Columns>
+	</Listbox>
+
+	<Label item="CBM_StatusLabel">
+		<ScreenID>CBM_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>408</Y></Location>
+		<Size><CX>440</CX><CY>16</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativeCelestialBankMgmtWnd">
+		<ScreenID>NativeCelestialBankMgmtWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>240</X><Y>90</Y></Location>
+		<Size><CX>474</CX><CY>520</CY></Size>
+		<Text>Celestial Bank - Alliance and Log</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>CBM_AllianceLabel</Pieces>
+		<Pieces>CBM_NameEditLabel</Pieces>
+		<Pieces>CBM_NameEdit</Pieces>
+		<Pieces>CBM_CreateAllianceButton</Pieces>
+		<Pieces>CBM_InviteButton</Pieces>
+		<Pieces>CBM_LeaveAllianceButton</Pieces>
+		<Pieces>CBM_RosterList</Pieces>
+		<Pieces>CBM_PendingList</Pieces>
+		<Pieces>CBM_KickButton</Pieces>
+		<Pieces>CBM_PromoteButton</Pieces>
+		<Pieces>CBM_DemoteButton</Pieces>
+		<Pieces>CBM_AcceptButton</Pieces>
+		<Pieces>CBM_DeclineButton</Pieces>
+		<Pieces>CBM_LogLabel</Pieces>
+		<Pieces>CBM_LogRefreshButton</Pieces>
+		<Pieces>CBM_LogList</Pieces>
+		<Pieces>CBM_StatusLabel</Pieces>
+	</Screen>
+
+	<!-- ═══════════ Deposit Platinum popup ═══════════
+	     Purse-funded only (Client::TakePlatinum via the existing DepositPlatinum
+	     path) — never touches the cursor, so none of the cursor-coin display-lag
+	     issues documented for DepositCursorCoin apply here. Fixed size, not
+	     sizable — small enough it never needs a reflow. (Internally still the
+	     "donate_plat" verb/ScreenIDs — only the user-facing text changed.) -->
+
+	<Label item="CBD_AmountHeaderLabel">
+		<ScreenID>CBD_AmountHeaderLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>60</CX><CY>16</CY></Size>
+		<Text>Amount:</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBD_Amt1Button">
+		<ScreenID>CBD_Amt1Button</ScreenID>
+		<RadioGroup>CBD_AmountGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>30</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBD_Amt1Label">
+		<ScreenID>CBD_Amt1Label</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>28</X><Y>30</Y></Location>
+		<Size><CX>36</CX><CY>18</CY></Size>
+		<Text>1</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBD_Amt100Button">
+		<ScreenID>CBD_Amt100Button</ScreenID>
+		<RadioGroup>CBD_AmountGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>64</X><Y>30</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBD_Amt100Label">
+		<ScreenID>CBD_Amt100Label</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>82</X><Y>30</Y></Location>
+		<Size><CX>46</CX><CY>18</CY></Size>
+		<Text>100</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBD_Amt1000Button">
+		<ScreenID>CBD_Amt1000Button</ScreenID>
+		<RadioGroup>CBD_AmountGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>138</X><Y>30</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBD_Amt1000Label">
+		<ScreenID>CBD_Amt1000Label</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>156</X><Y>30</Y></Location>
+		<Size><CX>50</CX><CY>18</CY></Size>
+		<Text>1000</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBD_AmtCustomButton">
+		<ScreenID>CBD_AmtCustomButton</ScreenID>
+		<RadioGroup>CBD_AmountGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>56</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBD_AmtCustomLabel">
+		<ScreenID>CBD_AmtCustomLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>28</X><Y>56</Y></Location>
+		<Size><CX>56</CX><CY>18</CY></Size>
+		<Text>Custom:</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="CBD_CustomEdit">
+		<ScreenID>CBD_CustomEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>88</X><Y>54</Y></Location>
+		<Size><CX>64</CX><CY>20</CY></Size>
+		<TooltipReference>Typing here auto-selects Custom.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="CBD_AmtAllButton">
+		<ScreenID>CBD_AmtAllButton</ScreenID>
+		<RadioGroup>CBD_AmountGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>164</X><Y>56</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<TooltipReference>Donate everything currently in your purse.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBD_AmtAllLabel">
+		<ScreenID>CBD_AmtAllLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>182</X><Y>56</Y></Location>
+		<Size><CX>36</CX><CY>18</CY></Size>
+		<Text>All</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Label item="CBD_ScopeHeaderLabel">
+		<ScreenID>CBD_ScopeHeaderLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>86</Y></Location>
+		<Size><CX>50</CX><CY>16</CY></Size>
+		<Text>Scope:</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBD_ScopeAccountButton">
+		<ScreenID>CBD_ScopeAccountButton</ScreenID>
+		<RadioGroup>CBD_ScopeGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>64</X><Y>86</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBD_ScopeAccountLabel">
+		<ScreenID>CBD_ScopeAccountLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>82</X><Y>86</Y></Location>
+		<Size><CX>64</CX><CY>18</CY></Size>
+		<Text>Account</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBD_ScopeAllianceButton">
+		<ScreenID>CBD_ScopeAllianceButton</ScreenID>
+		<RadioGroup>CBD_ScopeGroup</RadioGroup>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>154</X><Y>86</Y></Location>
+		<Size><CX>16</CX><CY>16</CY></Size>
+		<Style_Checkbox>true</Style_Checkbox>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Template>BDT_Checkbox</Template>
+	</Button>
+
+	<Label item="CBD_ScopeAllianceLabel">
+		<ScreenID>CBD_ScopeAllianceLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>172</X><Y>86</Y></Location>
+		<Size><CX>64</CX><CY>18</CY></Size>
+		<Text>Alliance</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="CBD_DonateButton">
+		<ScreenID>CBD_DonateButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>20</X><Y>116</Y></Location>
+		<Size><CX>110</CX><CY>26</CY></Size>
+		<TooltipReference>Deposit the selected amount from your purse into the selected scope's bank.</TooltipReference>
+		<Text>Deposit</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="CBD_CancelButton">
+		<ScreenID>CBD_CancelButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>150</X><Y>116</Y></Location>
+		<Size><CX>110</CX><CY>26</CY></Size>
+		<Text>Cancel</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Label item="CBD_StatusLabel">
+		<ScreenID>CBD_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>152</Y></Location>
+		<Size><CX>270</CX><CY>18</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativeCelestialBankDonateWnd">
+		<ScreenID>NativeCelestialBankDonateWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>260</X><Y>160</Y></Location>
+		<Size><CX>290</CX><CY>200</CY></Size>
+		<Text>Deposit Platinum</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>false</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>CBD_AmountHeaderLabel</Pieces>
+		<Pieces>CBD_Amt1Button</Pieces>
+		<Pieces>CBD_Amt1Label</Pieces>
+		<Pieces>CBD_Amt100Button</Pieces>
+		<Pieces>CBD_Amt100Label</Pieces>
+		<Pieces>CBD_Amt1000Button</Pieces>
+		<Pieces>CBD_Amt1000Label</Pieces>
+		<Pieces>CBD_AmtCustomButton</Pieces>
+		<Pieces>CBD_AmtCustomLabel</Pieces>
+		<Pieces>CBD_CustomEdit</Pieces>
+		<Pieces>CBD_AmtAllButton</Pieces>
+		<Pieces>CBD_AmtAllLabel</Pieces>
+		<Pieces>CBD_ScopeHeaderLabel</Pieces>
+		<Pieces>CBD_ScopeAccountButton</Pieces>
+		<Pieces>CBD_ScopeAccountLabel</Pieces>
+		<Pieces>CBD_ScopeAllianceButton</Pieces>
+		<Pieces>CBD_ScopeAllianceLabel</Pieces>
+		<Pieces>CBD_DonateButton</Pieces>
+		<Pieces>CBD_CancelButton</Pieces>
+		<Pieces>CBD_StatusLabel</Pieces>
+	</Screen>
+
+	<!-- ═══════════ Withdraw-amount popup ═══════════
+	     Shared by the main item list's Withdraw button and both Platinum
+	     summary Withdraw buttons: a plain click opens this to type an exact
+	     amount; Shift-click and Ctrl-click skip it entirely (withdraw
+	     everything / exactly 1). Fixed size, not sizable — small enough it
+	     never needs a reflow. -->
+
+	<Label item="CBWD_AmountLabel">
+		<ScreenID>CBWD_AmountLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>160</CX><CY>18</CY></Size>
+		<Text>Amount to withdraw:</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="CBWD_AmountEdit">
+		<ScreenID>CBWD_AmountEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>10</X><Y>32</Y></Location>
+		<Size><CX>100</CX><CY>22</CY></Size>
+		<TooltipReference>Leave blank (or 0) to withdraw the entire stack/balance.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="CBWD_ConfirmButton">
+		<ScreenID>CBWD_ConfirmButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>20</X><Y>68</Y></Location>
+		<Size><CX>100</CX><CY>26</CY></Size>
+		<TooltipReference>Withdraw the typed amount (blank/0 = everything).</TooltipReference>
+		<Text>Withdraw</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="CBWD_CancelButton">
+		<ScreenID>CBWD_CancelButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>130</X><Y>68</Y></Location>
+		<Size><CX>100</CX><CY>26</CY></Size>
+		<Text>Cancel</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Screen item="NativeCelestialBankWithdrawWnd">
+		<ScreenID>NativeCelestialBankWithdrawWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>260</X><Y>160</Y></Location>
+		<Size><CX>250</CX><CY>128</CY></Size>
+		<Text>Withdraw Amount</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>false</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>CBWD_AmountLabel</Pieces>
+		<Pieces>CBWD_AmountEdit</Pieces>
+		<Pieces>CBWD_ConfirmButton</Pieces>
+		<Pieces>CBWD_CancelButton</Pieces>
+	</Screen>
+
+	<!-- ═══════════ Loadout window (Persona equipment pool) ═══════════
+	     Withdraw-only: no Deposit button exists here at all. Items only ever
+	     arrive via the persona-swap deposit hook (server-side,
+	     DepositEquipmentToLoadout — HIGH RISK/experimental, off by default).
+	     Style_Sizable with its own reflow, same as the main/mgmt windows. -->
+
+	<Label item="CBWL_SearchLabel">
+		<ScreenID>CBWL_SearchLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>48</CX><CY>18</CY></Size>
+		<Text>Search:</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="CBWL_SearchEdit">
+		<ScreenID>CBWL_SearchEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>62</X><Y>8</Y></Location>
+		<Size><CX>200</CX><CY>20</CY></Size>
+		<TooltipReference>Filter by item name or item ID.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="CBWL_ClearSearchButton">
+		<ScreenID>CBWL_ClearSearchButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>268</X><Y>8</Y></Location>
+		<Size><CX>50</CX><CY>20</CY></Size>
+		<Text>Clear</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Listbox item="CBWL_ItemList">
+		<ScreenID>CBWL_ItemList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Equipment stored in your Celestial Loadout (deposited automatically when you switch persona). Right-click a row to inspect it. Double-click a row to withdraw it instantly, or Ctrl+Click to select multiple rows (shown as ">>> Name &lt;&lt;&lt;" in gold) then click Withdraw to take them all at once — always the whole stack, no partial amount.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>32</Y></Location>
+		<Size><CX>480</CX><CY>230</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>24</Width><Heading></Heading></Columns>
+		<Columns><Width>220</Width><Heading>Item Name</Heading></Columns>
+		<Columns><Width>90</Width><Heading>Class</Heading></Columns>
+		<Columns><Width>50</Width><Heading>Charges</Heading></Columns>
+		<Columns><Width>50</Width><Heading>Qty</Heading></Columns>
+	</Listbox>
+
+	<Button item="CBWL_WithdrawButton">
+		<ScreenID>CBWL_WithdrawButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>276</Y></Location>
+		<Size><CX>90</CX><CY>24</CY></Size>
+		<TooltipReference>Withdraw the selected item — the entire stack, no partial amount.</TooltipReference>
+		<Text>Withdraw</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="CBWL_RefreshButton">
+		<ScreenID>CBWL_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>106</X><Y>276</Y></Location>
+		<Size><CX>80</CX><CY>24</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Label item="CBWL_StatusLabel">
+		<ScreenID>CBWL_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>196</X><Y>280</Y></Location>
+		<Size><CX>294</CX><CY>18</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativeCelestialBankLoadoutWnd">
+		<ScreenID>NativeCelestialBankLoadoutWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>150</X><Y>120</Y></Location>
+		<Size><CX>510</CX><CY>340</CY></Size>
+		<Text>Celestial Loadout</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>CBWL_SearchLabel</Pieces>
+		<Pieces>CBWL_SearchEdit</Pieces>
+		<Pieces>CBWL_ClearSearchButton</Pieces>
+		<Pieces>CBWL_ItemList</Pieces>
+		<Pieces>CBWL_WithdrawButton</Pieces>
+		<Pieces>CBWL_RefreshButton</Pieces>
+		<Pieces>CBWL_StatusLabel</Pieces>
+	</Screen>
+</XML>
