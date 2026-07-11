@@ -1,6 +1,6 @@
 name: Sync Spire Data Files
 
-# Keeps rof/spells_us.txt, rof/Resources/SkillCaps.txt, rof/Resources/BaseData.txt,
+# Keeps rof/spells_us.txt, rof/resources/SkillCaps.txt, rof/resources/BaseData.txt,
 # and rof/dbstr_us.txt up to date from Spire. Commits only fire when the content
 # actually changed, and a commit here triggers build.yml's existing push trigger
 # to regenerate the filelist and publish a fresh release.
@@ -19,17 +19,17 @@ jobs:
 
       - name: Fetch Spire-exported client files
         run: |
-          mkdir -p rof/Resources
+          mkdir -p rof/resources
           curl -fsSL -o rof/spells_us.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/spells"
-          curl -fsSL -o rof/Resources/SkillCaps.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/skills"
-          curl -fsSL -o rof/Resources/BaseData.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/basedata"
+          curl -fsSL -o rof/resources/SkillCaps.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/skills"
+          curl -fsSL -o rof/resources/BaseData.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/basedata"
           curl -fsSL -o rof/dbstr_us.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/dbstring"
 
       - name: Commit and push if changed
         run: |
           git config user.name "starfall-patcher-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add rof/spells_us.txt rof/Resources/SkillCaps.txt rof/Resources/BaseData.txt rof/dbstr_us.txt
+          git add rof/spells_us.txt rof/resources/SkillCaps.txt rof/resources/BaseData.txt rof/dbstr_us.txt
           if git diff --cached --quiet; then
             echo "No changes from Spire - skipping commit."
           else

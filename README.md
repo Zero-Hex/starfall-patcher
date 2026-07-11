@@ -9,7 +9,7 @@ EQEmu File Comparison and Patcher
 
 This fork is wired up for Starfall specifically:
 
-- **`rof/spells_us.txt`, `rof/Resources/SkillCaps.txt`, `rof/Resources/BaseData.txt`,
+- **`rof/spells_us.txt`, `rof/resources/SkillCaps.txt`, `rof/resources/BaseData.txt`,
   `rof/dbstr_us.txt`** are kept in sync automatically from Spire by
   `.github/workflows/sync-spire.yml`, which runs every 30 minutes (and can be
   triggered manually from the Actions tab via "Run workflow"). It only commits
