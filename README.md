@@ -5,6 +5,34 @@ EQEmu File Comparison and Patcher
 ![alt tag](http://i.imgur.com/FSVgkzh.png)
 ---
 
+## Starfall setup notes
+
+This fork is wired up for Starfall specifically:
+
+- **`rof/spells_us.txt`, `rof/Resources/SkillCaps.txt`, `rof/Resources/BaseData.txt`,
+  `rof/dbstr_us.txt`** are kept in sync automatically from Spire by
+  `.github/workflows/sync-spire.yml`, which runs every 30 minutes (and can be
+  triggered manually from the Actions tab via "Run workflow"). It only commits
+  when the fetched content actually changed, and that commit triggers the
+  normal `build.yml` pipeline to regenerate the filelist and publish a new
+  release.
+- **Everything else** (the client DLL, custom UI XML files, anything not
+  pulled from Spire) is added manually: drop the file into `rof/` at the path
+  it should land at on a player's machine (e.g. a UI file goes in
+  `rof/uifiles/default/EQUI_Whatever.xml`), commit, and push to `master`. That
+  push alone triggers `build.yml` to rebuild and publish — no other steps
+  needed.
+- The client version folder is `rof/` (Rain of Fear), matching this fork's
+  default. If Starfall's client isn't RoF/RoF2, this folder (and the
+  `supportedClients` list in `MainForm.cs`) needs to change accordingly.
+- `SERVER_NAME` and `FILE_NAME` can be customized under repo *Settings →
+  Secrets and variables → Actions → Variables* — left unset, they default to
+  "EQEmu Patcher" / "eqemupatcher". `FILELIST_URL`, `PATCHER_URL`, and
+  `STORAGE_URL` default to this repo's own GitHub-hosted URLs, which is what
+  you want unless you're moving hosting elsewhere later.
+
+---
+
 There are two ways to set up eqemupatcher:
 The easier but limited is the [Quick Guide](#quick-guide) steps.
 The more custom but advanced is the [Advanced Build](#advanced-build) steps.

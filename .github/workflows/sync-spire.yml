@@ -1,0 +1,38 @@
+name: Sync Spire Data Files
+
+# Keeps rof/spells_us.txt, rof/Resources/SkillCaps.txt, rof/Resources/BaseData.txt,
+# and rof/dbstr_us.txt up to date from Spire. Commits only fire when the content
+# actually changed, and a commit here triggers build.yml's existing push trigger
+# to regenerate the filelist and publish a fresh release.
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch Spire-exported client files
+        run: |
+          mkdir -p rof/Resources
+          curl -fsSL -o rof/spells_us.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/spells"
+          curl -fsSL -o rof/Resources/SkillCaps.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/skills"
+          curl -fsSL -o rof/Resources/BaseData.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/basedata"
+          curl -fsSL -o rof/dbstr_us.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/dbstring"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "starfall-patcher-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add rof/spells_us.txt rof/Resources/SkillCaps.txt rof/Resources/BaseData.txt rof/dbstr_us.txt
+          if git diff --cached --quiet; then
+            echo "No changes from Spire - skipping commit."
+          else
+            git commit -m "Sync spells/skills/basedata/dbstring from Spire"
+            git push
+          fi
