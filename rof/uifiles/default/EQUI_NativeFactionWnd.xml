@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<Label item="FW_SearchLabel">
+		<ScreenID>FW_SearchLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>48</CX><CY>18</CY></Size>
+		<Text>Search:</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="FW_SearchEdit">
+		<ScreenID>FW_SearchEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>60</X><Y>8</Y></Location>
+		<Size><CX>200</CX><CY>20</CY></Size>
+		<TooltipReference>Filter the list by partial faction name.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="FW_ClearSearchButton">
+		<ScreenID>FW_ClearSearchButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>266</X><Y>8</Y></Location>
+		<Size><CX>44</CX><CY>20</CY></Size>
+		<Text>Clear</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="FW_RefreshButton">
+		<ScreenID>FW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>416</X><Y>8</Y></Location>
+		<Size><CX>72</CX><CY>20</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Listbox item="FW_FactionList">
+		<ScreenID>FW_FactionList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Your standing with every faction you've interacted with, plus a curated set of always-visible factions (shown in gray until you've actually interacted with them).</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>34</Y></Location>
+		<Size><CX>540</CX><CY>320</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>230</Width><Heading>Faction Name</Heading></Columns>
+		<Columns><Width>100</Width><Heading>Standing</Heading></Columns>
+		<Columns><Width>70</Width><Heading>Value</Heading></Columns>
+		<Columns><Width>140</Width><Heading>Next Rank</Heading></Columns>
+	</Listbox>
+
+	<Label item="FW_StatusLabel">
+		<ScreenID>FW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>358</Y></Location>
+		<Size><CX>540</CX><CY>18</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativeFactionWnd">
+		<ScreenID>NativeFactionWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>140</X><Y>90</Y></Location>
+		<Size><CX>560</CX><CY>410</CY></Size>
+		<Text>Faction Standings</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<MinVSize>200</MinVSize>
+		<MinHSize>360</MinHSize>
+		<Pieces>FW_SearchLabel</Pieces>
+		<Pieces>FW_SearchEdit</Pieces>
+		<Pieces>FW_ClearSearchButton</Pieces>
+		<Pieces>FW_RefreshButton</Pieces>
+		<Pieces>FW_FactionList</Pieces>
+		<Pieces>FW_StatusLabel</Pieces>
+	</Screen>
+</XML>

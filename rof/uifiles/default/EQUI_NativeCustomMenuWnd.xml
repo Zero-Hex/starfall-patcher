@@ -86,11 +86,24 @@
 		<TooltipReference>Open/close the Autospell window</TooltipReference>
 	</Button>
 
+	<Button item="CUST_FactionButton">
+		<ScreenID>CUST_FactionButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>168</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Factions</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Faction Standings window</TooltipReference>
+	</Button>
+
 	<Screen item="NativeCustomMenuWnd">
 		<ScreenID>NativeCustomMenuWnd</ScreenID>
 		<RelativePosition>false</RelativePosition>
 		<Location><X>20</X><Y>20</Y></Location>
-		<Size><CX>150</CX><CY>198</CY></Size>
+		<Size><CX>150</CX><CY>224</CY></Size>
 		<Text>Starfall EQEMU</Text>
 		<DrawTemplate>WDT_Def</DrawTemplate>
 		<Style_Titlebar>true</Style_Titlebar>
@@ -105,6 +118,7 @@
 		<Pieces>CUST_CelestialBankButton</Pieces>
 		<Pieces>CUST_AutoskillButton</Pieces>
 		<Pieces>CUST_AutospellButton</Pieces>
+		<Pieces>CUST_FactionButton</Pieces>
 	</Screen>
 
 </XML>

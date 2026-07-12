@@ -187,6 +187,7 @@
 		<Include>EQUI_NativeAutoskillWnd.xml</Include>
 		<Include>EQUI_NativeAutospellWnd.xml</Include>
 		<Include>EQUI_NativeGuildCrafterWnd.xml</Include>
+		<Include>EQUI_NativeFactionWnd.xml</Include>
 		<Include>EQUI_TopLevelScreens.xml</Include>
 		<Include>EQUI_MarketplaceWnd.xml</Include>
 		<Include>EQUI_GuildCreationWnd.xml</Include>
