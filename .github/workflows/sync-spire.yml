@@ -2,8 +2,9 @@ name: Sync Spire Data Files
 
 # Keeps rof/spells_us.txt, rof/resources/SkillCaps.txt, rof/resources/BaseData.txt,
 # and rof/dbstr_us.txt up to date from Spire. Commits only fire when the content
-# actually changed, and a commit here triggers build.yml's existing push trigger
-# to regenerate the filelist and publish a fresh release.
+# actually changed. GitHub blocks the default GITHUB_TOKEN from triggering other
+# workflows via its own pushes (anti-recursion safeguard), so this explicitly
+# dispatches build.yml itself instead of relying on the push to cascade.
 
 on:
   schedule:
@@ -12,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   sync:
@@ -28,7 +30,9 @@ jobs:
           curl -fsSL -o rof/resources/BaseData.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/basedata"
           curl -fsSL -o rof/dbstr_us.txt "http://15.204.93.56:3000/api/v1/eqemuserver/export-client-file/dbstring"
 
-      - name: Commit and push if changed
+      - name: Commit, push, and trigger build if changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "starfall-patcher-bot"
           git config user.email "actions@users.noreply.github.com"
@@ -38,4 +42,5 @@ jobs:
           else
             git commit -m "Sync spells/skills/basedata/dbstring from Spire"
             git push
+            gh workflow run build.yml --ref master
           fi
