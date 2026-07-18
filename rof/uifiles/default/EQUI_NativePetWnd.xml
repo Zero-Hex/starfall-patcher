@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<!-- Native Pet Roster window (Stage 6f). Flat single-list layout, no
+	     categories/detail split — mirrors EQUI_NativeFactionWnd.xml's
+	     simpler pattern rather than Achievements/Collections' 3-panel one,
+	     since this is just "every species you've unlocked, pick one to
+	     summon." Style_Sizable pinned to the base design size (MinHSize/
+	     MinVSize), same grow-only reflow technique as every other resizable
+	     window in this DLL. The Description column is deliberately given
+	     the lion's share of the base width and grows with the window on
+	     resize (pet_window.cpp's ReflowIfResized calls ListSetColumnWidth
+	     on it), same "content-heavy column absorbs the width" idea
+	     loot_window.cpp uses.
+
+	     ScreenID prefix is PETW_, NOT PW_ — PW_ is already used by
+	     EQUI_NativePersonaWnd.xml (Persona Window) and ScreenIDs must be
+	     globally unique across the whole client UI, not just per-file. -->
+
+	<Button item="PETW_SummonButton">
+		<ScreenID>PETW_SummonButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>8</Y></Location>
+		<Size><CX>90</CX><CY>22</CY></Size>
+		<Text>Summon</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Summon the selected pet (double-click a row also works)</TooltipReference>
+	</Button>
+
+	<Button item="PETW_DismissButton">
+		<ScreenID>PETW_DismissButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>108</X><Y>8</Y></Location>
+		<Size><CX>90</CX><CY>22</CY></Size>
+		<Text>Dismiss</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Dismiss your currently summoned pet</TooltipReference>
+	</Button>
+
+	<Button item="PETW_InfoButton">
+		<ScreenID>PETW_InfoButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>206</X><Y>8</Y></Location>
+		<Size><CX>74</CX><CY>22</CY></Size>
+		<Text>Info</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Show the selected pet's current stats (HP/AC/Attack/Damage/Resists) in your chat window</TooltipReference>
+	</Button>
+
+	<Button item="PETW_RefreshButton">
+		<ScreenID>PETW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>288</X><Y>8</Y></Location>
+		<Size><CX>74</CX><CY>22</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Listbox item="PETW_PetList">
+		<ScreenID>PETW_PetList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Double-click to summon a pet; right-click your active pet's row to dismiss it.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>38</Y></Location>
+		<Size><CX>740</CX><CY>190</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Style_HScroll>false</Style_HScroll>
+		<Style_Transparent>false</Style_Transparent>
+		<Columns><Width>50</Width><Heading>State</Heading></Columns>
+		<Columns><Width>120</Width><Heading>Species</Heading></Columns>
+		<Columns><Width>50</Width><Heading>Level</Heading></Columns>
+		<Columns><Width>160</Width><Heading>Progress</Heading></Columns>
+		<Columns><Width>360</Width><Heading>Description</Heading></Columns>
+	</Listbox>
+
+	<!-- Species detail panel, populated on row select (mirrors
+	     EQUI_NativeCollectionWnd.xml's NCW_Detail* panel and the
+	     "#collection native detail [id]" round-trip pattern). -->
+	<Screen item="PETW_DetailPanel">
+		<ScreenID>PETW_DetailPanel</ScreenID>
+		<DrawTemplate>WDT_RoundedNoTitle</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>238</Y></Location>
+		<Size><CX>740</CX><CY>140</CY></Size>
+		<Style_Titlebar>false</Style_Titlebar>
+		<Style_Minimizebox>false</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Closebox>false</Style_Closebox>
+	</Screen>
+
+	<Label item="PETW_DetailHeaderLabel">
+		<ScreenID>PETW_DetailHeaderLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>22</X><Y>246</Y></Location>
+		<Size><CX>200</CX><CY>18</CY></Size>
+		<Text>Details</Text>
+		<Font>3</Font>
+		<TextColor><R>248</R><G>189</G><B>33</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Label item="PETW_DetailTitleLabel">
+		<ScreenID>PETW_DetailTitleLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>22</X><Y>268</Y></Location>
+		<Size><CX>716</CX><CY>22</CY></Size>
+		<Text>Select a pet</Text>
+		<Font>4</Font>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Label item="PETW_DetailDescriptionLabel">
+		<ScreenID>PETW_DetailDescriptionLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>22</X><Y>294</Y></Location>
+		<Size><CX>716</CX><CY>76</CY></Size>
+		<Text></Text>
+		<Font>2</Font>
+		<TextColor><R>210</R><G>220</G><B>235</B></TextColor>
+		<NoWrap>false</NoWrap>
+	</Label>
+
+	<Label item="PETW_StatusLabel">
+		<ScreenID>PETW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>388</Y></Location>
+		<Size><CX>740</CX><CY>18</CY></Size>
+		<Text>Open with #pet. Double-click a pet to summon it.</Text>
+		<Font>1</Font>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativePetWnd">
+		<ScreenID>NativePetWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>80</X><Y>60</Y></Location>
+		<Size><CX>760</CX><CY>440</CY></Size>
+		<Text>Pets</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<MinVSize>440</MinVSize>
+		<MinHSize>760</MinHSize>
+		<Pieces>PETW_SummonButton</Pieces>
+		<Pieces>PETW_DismissButton</Pieces>
+		<Pieces>PETW_InfoButton</Pieces>
+		<Pieces>PETW_RefreshButton</Pieces>
+		<Pieces>PETW_PetList</Pieces>
+		<Pieces>PETW_DetailPanel</Pieces>
+		<Pieces>PETW_DetailHeaderLabel</Pieces>
+		<Pieces>PETW_DetailTitleLabel</Pieces>
+		<Pieces>PETW_DetailDescriptionLabel</Pieces>
+		<Pieces>PETW_StatusLabel</Pieces>
+	</Screen>
+</XML>
