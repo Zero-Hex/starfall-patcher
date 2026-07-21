@@ -191,6 +191,7 @@
 		<Include>EQUI_NativeAchievementWnd.xml</Include>
 		<Include>EQUI_NativeCollectionWnd.xml</Include>
 		<Include>EQUI_NativePetWnd.xml</Include>
+		<Include>EQUI_NativePetEquipmentWnd.xml</Include>
 		<Include>EQUI_NativeOfflineBazaarWnd.xml</Include>
 		<Include>EQUI_NativeOfflineBazaarPricePopup.xml</Include>
 		<Include>EQUI_NativeParcelWnd.xml</Include>

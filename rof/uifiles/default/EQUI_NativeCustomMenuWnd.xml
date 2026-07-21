@@ -14,11 +14,11 @@
 	     Two columns, buttons ordered alphabetically by label reading top-to-
 	     bottom then left-to-right: column 1 (X=8) holds Achievements/Advanced
 	     Loot/Autoskill/Autospell/Celestial Bank/Collections; column 2 (X=152)
-	     continues with Factions/Parcels/Persona/Pets/Timestamps. Column 1 has
-	     6 rows, column 2 has 5 — the window's overall height is sized to
-	     column 1. Adding a new button: pick its alphabetical slot, shift
+	     continues with Factions/Parcels/Persona/Pet Equipment/Pets/Timestamps.
+	     Both columns have 6 rows now — the window's overall height is sized
+	     to fit 6 rows. Adding a new button: pick its alphabetical slot, shift
 	     everything after it down one row (and into column 2 if column 1
-	     overflows past 6). -->
+	     overflows past 6, or grow the window if column 2 overflows past 6). -->
 
 	<Label item="CUST_SubtitleLabel">
 		<ScreenID>CUST_SubtitleLabel</ScreenID>
@@ -147,10 +147,23 @@
 		<TooltipReference>Open/close the Persona window</TooltipReference>
 	</Button>
 
+	<Button item="CUST_PetEquipButton">
+		<ScreenID>CUST_PetEquipButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>152</X><Y>116</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Pet Equipment</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Pet Equipment window</TooltipReference>
+	</Button>
+
 	<Button item="CUST_PetButton">
 		<ScreenID>CUST_PetButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>152</X><Y>116</Y></Location>
+		<Location><X>152</X><Y>142</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Pets</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -163,7 +176,7 @@
 	<Button item="CUST_ChatTimestampsButton">
 		<ScreenID>CUST_ChatTimestampsButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>152</X><Y>142</Y></Location>
+		<Location><X>152</X><Y>168</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Timestamps: OFF</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -197,6 +210,7 @@
 		<Pieces>CUST_FactionButton</Pieces>
 		<Pieces>CUST_ParcelButton</Pieces>
 		<Pieces>CUST_PersonaButton</Pieces>
+		<Pieces>CUST_PetEquipButton</Pieces>
 		<Pieces>CUST_PetButton</Pieces>
 		<Pieces>CUST_ChatTimestampsButton</Pieces>
 	</Screen>

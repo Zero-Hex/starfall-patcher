@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<Label item="PEW_SlotsLabel">
+		<ScreenID>PEW_SlotsLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>300</CX><CY>18</CY></Size>
+		<Text>0/0 Slots Unlocked</Text>
+		<TextColor><R>255</R><G>255</G><B>102</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Button item="PEW_EquipButton">
+		<ScreenID>PEW_EquipButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>320</X><Y>8</Y></Location>
+		<Size><CX>100</CX><CY>20</CY></Size>
+		<TooltipReference>Pick up the item on your cursor, then click here to equip it on your pet.</TooltipReference>
+		<Text>Equip</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="PEW_RefreshButton">
+		<ScreenID>PEW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>428</X><Y>8</Y></Location>
+		<Size><CX>72</CX><CY>20</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Listbox item="PEW_VaultList">
+		<ScreenID>PEW_VaultList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Your pet's equipment vault. Ctrl+Click to select multiple rows to unequip at once. Right-click a row to inspect it. Double-click a row while holding an item to swap it in.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>34</Y></Location>
+		<Size><CX>490</CX><CY>280</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>24</Width><Heading></Heading></Columns>
+		<Columns><Width>190</Width><Heading>Item</Heading></Columns>
+		<Columns><Width>170</Width><Heading>Slot</Heading></Columns>
+	</Listbox>
+
+	<Button item="PEW_UnequipButton">
+		<ScreenID>PEW_UnequipButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>320</Y></Location>
+		<Size><CX>150</CX><CY>22</CY></Size>
+		<TooltipReference>Unequip every selected item (delivered to your cursor/inventory, or parcel if both are full).</TooltipReference>
+		<Text>Unequip Selected</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="PEW_SwapButton">
+		<ScreenID>PEW_SwapButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>170</X><Y>320</Y></Location>
+		<Size><CX>150</CX><CY>22</CY></Size>
+		<TooltipReference>Pick up an item on your cursor, select one row, then click here to swap them (or just double-click the row while holding an item).</TooltipReference>
+		<Text>Swap w/ Cursor</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="PEW_SwapWeaponsButton">
+		<ScreenID>PEW_SwapWeaponsButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>330</X><Y>320</Y></Location>
+		<Size><CX>170</CX><CY>22</CY></Size>
+		<TooltipReference>Swap your pet's Primary and Secondary weapons with each other.</TooltipReference>
+		<Text>Swap Weapons</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Label item="PEW_StatusLabel">
+		<ScreenID>PEW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>348</Y></Location>
+		<Size><CX>490</CX><CY>18</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativePetEquipmentWnd">
+		<ScreenID>NativePetEquipmentWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>170</X><Y>110</Y></Location>
+		<Size><CX>510</CX><CY>396</CY></Size>
+		<Text>Pet Equipment</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<MinVSize>220</MinVSize>
+		<MinHSize>360</MinHSize>
+		<Pieces>PEW_SlotsLabel</Pieces>
+		<Pieces>PEW_EquipButton</Pieces>
+		<Pieces>PEW_RefreshButton</Pieces>
+		<Pieces>PEW_VaultList</Pieces>
+		<Pieces>PEW_UnequipButton</Pieces>
+		<Pieces>PEW_SwapButton</Pieces>
+		<Pieces>PEW_SwapWeaponsButton</Pieces>
+		<Pieces>PEW_StatusLabel</Pieces>
+	</Screen>
+</XML>
