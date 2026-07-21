@@ -16,7 +16,17 @@
 
 	     ScreenID prefix is PETW_, NOT PW_ — PW_ is already used by
 	     EQUI_NativePersonaWnd.xml (Persona Window) and ScreenIDs must be
-	     globally unique across the whole client UI, not just per-file. -->
+	     globally unique across the whole client UI, not just per-file.
+
+	     Never-unlocked species are NOT listed here anymore — they live in
+	     the separate Locked Pets popup (PETLW_ pieces / NativePetLockedWnd
+	     below), opened via PETW_LockedButton, so this list only shows pets
+	     the player actually owns. A pet the player owns but can't summon
+	     with their CURRENT class/persona stays in this list (there's
+	     nothing to "unlock" about it) but is flagged via the Class column
+	     (the pet's OWN class affiliation, e.g. an Elemental pet "is" a
+	     Magician pet) and a red highlight instead, sorted after summonable
+	     pets (see PetProgressionManager::SendNativeRoster's sort). -->
 
 	<Button item="PETW_SummonButton">
 		<ScreenID>PETW_SummonButton</ScreenID>
@@ -69,6 +79,19 @@
 		<Template>BDT_Normal</Template>
 	</Button>
 
+	<Button item="PETW_LockedButton">
+		<ScreenID>PETW_LockedButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>366</X><Y>8</Y></Location>
+		<Size><CX>110</CX><CY>22</CY></Size>
+		<Text>Locked Pets</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Show pets you haven't unlocked yet, and how to unlock them.</TooltipReference>
+	</Button>
+
 	<Listbox item="PETW_PetList">
 		<ScreenID>PETW_PetList</ScreenID>
 		<DrawTemplate>WDT_Inner</DrawTemplate>
@@ -80,11 +103,12 @@
 		<Style_VScroll>true</Style_VScroll>
 		<Style_HScroll>false</Style_HScroll>
 		<Style_Transparent>false</Style_Transparent>
-		<Columns><Width>50</Width><Heading>State</Heading></Columns>
-		<Columns><Width>120</Width><Heading>Species</Heading></Columns>
+		<Columns><Width>90</Width><Heading>State</Heading></Columns>
+		<Columns><Width>140</Width><Heading>Species</Heading></Columns>
+		<Columns><Width>85</Width><Heading>Class</Heading></Columns>
 		<Columns><Width>50</Width><Heading>Level</Heading></Columns>
-		<Columns><Width>160</Width><Heading>Progress</Heading></Columns>
-		<Columns><Width>360</Width><Heading>Description</Heading></Columns>
+		<Columns><Width>70</Width><Heading>XP Gained</Heading></Columns>
+		<Columns><Width>305</Width><Heading>Description</Heading></Columns>
 	</Listbox>
 
 	<!-- Species detail panel, populated on row select (mirrors
@@ -167,11 +191,78 @@
 		<Pieces>PETW_DismissButton</Pieces>
 		<Pieces>PETW_InfoButton</Pieces>
 		<Pieces>PETW_RefreshButton</Pieces>
+		<Pieces>PETW_LockedButton</Pieces>
 		<Pieces>PETW_PetList</Pieces>
 		<Pieces>PETW_DetailPanel</Pieces>
 		<Pieces>PETW_DetailHeaderLabel</Pieces>
 		<Pieces>PETW_DetailTitleLabel</Pieces>
 		<Pieces>PETW_DetailDescriptionLabel</Pieces>
 		<Pieces>PETW_StatusLabel</Pieces>
+	</Screen>
+
+	<!-- Locked Pets popup: pets not yet unlocked, split out of the main
+	     list so it only shows pets the player actually owns (Class column
+	     plus wrong-class highlighting on the main window covers "owned but
+	     can't summon right now"). Same read-only-list-popup shape as Guild
+	     Crafter's Boosts sub-window (EQUI_NativeGuildCrafterWnd.xml,
+	     GCBW_* pieces), but resizable like the main window (grow-only
+	     reflow, pet_window.cpp's ReflowIfResizedLocked). No
+	     TooltipReference on the list itself: a static "hover the list"
+	     tooltip fights with/overrides the client's own per-cell hover text
+	     for a truncated Unlock Tip, so it's left unset here. -->
+
+	<Listbox item="PETLW_LockedList">
+		<ScreenID>PETLW_LockedList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>480</CX><CY>260</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Style_Transparent>false</Style_Transparent>
+		<Columns><Width>140</Width><Heading>Species</Heading></Columns>
+		<Columns><Width>340</Width><Heading>Unlock Tip</Heading></Columns>
+	</Listbox>
+
+	<Button item="PETLW_RefreshButton">
+		<ScreenID>PETLW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>278</Y></Location>
+		<Size><CX>90</CX><CY>22</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Label item="PETLW_StatusLabel">
+		<ScreenID>PETLW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>108</X><Y>280</Y></Location>
+		<Size><CX>382</CX><CY>18</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativePetLockedWnd">
+		<ScreenID>NativePetLockedWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>200</X><Y>140</Y></Location>
+		<Size><CX>500</CX><CY>318</CY></Size>
+		<Text>Locked Pets</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<MinVSize>318</MinVSize>
+		<MinHSize>500</MinHSize>
+		<Pieces>PETLW_LockedList</Pieces>
+		<Pieces>PETLW_RefreshButton</Pieces>
+		<Pieces>PETLW_StatusLabel</Pieces>
 	</Screen>
 </XML>
