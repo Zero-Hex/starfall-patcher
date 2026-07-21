@@ -2,8 +2,8 @@
 <XML ID="EQInterfaceDefinitionLanguage">
 	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
 
-	<Button item="PW_RefreshButton">
-		<ScreenID>PW_RefreshButton</ScreenID>
+	<Button item="PCW_RefreshButton">
+		<ScreenID>PCW_RefreshButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
 		<Location><X>358</X><Y>8</Y></Location>
 		<Size><CX>72</CX><CY>20</CY></Size>
@@ -14,8 +14,8 @@
 		<Template>BDT_Normal</Template>
 	</Button>
 
-	<Listbox item="PW_ParcelList">
-		<ScreenID>PW_ParcelList</ScreenID>
+	<Listbox item="PCW_ParcelList">
+		<ScreenID>PCW_ParcelList</ScreenID>
 		<DrawTemplate>WDT_Inner</DrawTemplate>
 		<TooltipReference>Parcels waiting for you. Ctrl+Click to select multiple rows to retrieve at once.</TooltipReference>
 		<RelativePosition>true</RelativePosition>
@@ -30,8 +30,8 @@
 		<Columns><Width>116</Width><Heading>Note</Heading></Columns>
 	</Listbox>
 
-	<Button item="PW_RetrieveButton">
-		<ScreenID>PW_RetrieveButton</ScreenID>
+	<Button item="PCW_RetrieveButton">
+		<ScreenID>PCW_RetrieveButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
 		<Location><X>10</X><Y>320</Y></Location>
 		<Size><CX>160</CX><CY>22</CY></Size>
@@ -43,8 +43,8 @@
 		<Template>BDT_Normal</Template>
 	</Button>
 
-	<Label item="PW_StatusLabel">
-		<ScreenID>PW_StatusLabel</ScreenID>
+	<Label item="PCW_StatusLabel">
+		<ScreenID>PCW_StatusLabel</ScreenID>
 		<RelativePosition>true</RelativePosition>
 		<Location><X>10</X><Y>348</Y></Location>
 		<Size><CX>420</CX><CY>18</CY></Size>
@@ -68,9 +68,9 @@
 		<Style_Transparent>false</Style_Transparent>
 		<MinVSize>220</MinVSize>
 		<MinHSize>320</MinHSize>
-		<Pieces>PW_RefreshButton</Pieces>
-		<Pieces>PW_ParcelList</Pieces>
-		<Pieces>PW_RetrieveButton</Pieces>
-		<Pieces>PW_StatusLabel</Pieces>
+		<Pieces>PCW_RefreshButton</Pieces>
+		<Pieces>PCW_ParcelList</Pieces>
+		<Pieces>PCW_RetrieveButton</Pieces>
+		<Pieces>PCW_StatusLabel</Pieces>
 	</Screen>
 </XML>
