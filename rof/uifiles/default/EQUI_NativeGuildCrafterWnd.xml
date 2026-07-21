@@ -447,7 +447,7 @@
 		<RelativePosition>true</RelativePosition>
 		<Location><X>180</X><Y>276</Y></Location>
 		<Size><CX>150</CX><CY>24</CY></Size>
-		<TooltipReference>Donate the amount in the platinum box above to the crafting fund -- funds missing-component auto-purchases for the whole guild.</TooltipReference>
+		<TooltipReference>Donate platinum to the crafting fund -- funds missing-component auto-purchases for the whole guild.</TooltipReference>
 		<Text>Donate Plat</Text>
 		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
 		<Style_Transparent>false</Style_Transparent>
@@ -493,6 +493,79 @@
 		<Pieces>GCVW_DonateButton</Pieces>
 		<Pieces>GCVW_DonatePlatButton</Pieces>
 		<Pieces>GCVW_StatusLabel</Pieces>
+	</Screen>
+
+	<!-- Platinum-donation popup for the vault window's Donate Plat button,
+	     same shape/convention as the Offline Bazaar price popup
+	     (EQUI_NativeOfflineBazaarPricePopup.xml, OBWP_* pieces). Kept
+	     separate from GCVW_PlatAmountEdit (which stays Withdraw Plat-only,
+	     leader-gated) so a member donating doesn't have to share or clash
+	     with whatever amount a leader has typed into that box. -->
+
+	<Label item="GCDP_TitleLabel">
+		<ScreenID>GCDP_TitleLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>230</CX><CY>18</CY></Size>
+		<Text>Donate how much (pp)?</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="GCDP_AmountEdit">
+		<ScreenID>GCDP_AmountEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>10</X><Y>32</Y></Location>
+		<Size><CX>100</CX><CY>22</CY></Size>
+		<TooltipReference>Platinum to donate to the crafting fund.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="GCDP_ConfirmButton">
+		<ScreenID>GCDP_ConfirmButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>20</X><Y>68</Y></Location>
+		<Size><CX>100</CX><CY>26</CY></Size>
+		<TooltipReference>Donate this amount.</TooltipReference>
+		<Text>Confirm</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="GCDP_CancelButton">
+		<ScreenID>GCDP_CancelButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>130</X><Y>68</Y></Location>
+		<Size><CX>100</CX><CY>26</CY></Size>
+		<Text>Cancel</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Screen item="NativeGuildCrafterDonatePlatWnd">
+		<ScreenID>NativeGuildCrafterDonatePlatWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>260</X><Y>160</Y></Location>
+		<Size><CX>250</CX><CY>128</CY></Size>
+		<Text>Donate Platinum</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>false</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>GCDP_TitleLabel</Pieces>
+		<Pieces>GCDP_AmountEdit</Pieces>
+		<Pieces>GCDP_ConfirmButton</Pieces>
+		<Pieces>GCDP_CancelButton</Pieces>
 	</Screen>
 
 </XML>
