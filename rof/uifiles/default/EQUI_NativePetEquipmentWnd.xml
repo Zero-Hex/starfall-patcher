@@ -93,10 +93,10 @@
 	<Label item="PEW_StatusLabel">
 		<ScreenID>PEW_StatusLabel</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>10</X><Y>348</Y></Location>
-		<Size><CX>490</CX><CY>18</CY></Size>
+		<Location><X>250</X><Y>348</Y></Location>
+		<Size><CX>250</CX><CY>18</CY></Size>
 		<Text></Text>
-		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<TextColor><R>255</R><G>255</G><B>102</B></TextColor>
 		<NoWrap>true</NoWrap>
 	</Label>
 

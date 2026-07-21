@@ -442,6 +442,19 @@
 		<Template>BDT_Normal</Template>
 	</Button>
 
+	<Button item="GCVW_DonatePlatButton">
+		<ScreenID>GCVW_DonatePlatButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>180</X><Y>276</Y></Location>
+		<Size><CX>150</CX><CY>24</CY></Size>
+		<TooltipReference>Donate the amount in the platinum box above to the crafting fund -- funds missing-component auto-purchases for the whole guild.</TooltipReference>
+		<Text>Donate Plat</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
 	<Label item="GCVW_StatusLabel">
 		<ScreenID>GCVW_StatusLabel</ScreenID>
 		<RelativePosition>true</RelativePosition>
@@ -478,6 +491,7 @@
 		<Pieces>GCVW_WithdrawPlatButton</Pieces>
 		<Pieces>GCVW_RefreshButton</Pieces>
 		<Pieces>GCVW_DonateButton</Pieces>
+		<Pieces>GCVW_DonatePlatButton</Pieces>
 		<Pieces>GCVW_StatusLabel</Pieces>
 	</Screen>
 
