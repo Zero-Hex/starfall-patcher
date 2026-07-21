@@ -192,6 +192,7 @@
 		<Include>EQUI_NativeCollectionWnd.xml</Include>
 		<Include>EQUI_NativePetWnd.xml</Include>
 		<Include>EQUI_NativeOfflineBazaarWnd.xml</Include>
+		<Include>EQUI_NativeOfflineBazaarPricePopup.xml</Include>
 		<Include>EQUI_NativeParcelWnd.xml</Include>
 		<Include>EQUI_TopLevelScreens.xml</Include>
 		<Include>EQUI_MarketplaceWnd.xml</Include>

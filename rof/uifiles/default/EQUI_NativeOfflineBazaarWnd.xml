@@ -12,34 +12,12 @@
 		<NoWrap>true</NoWrap>
 	</Label>
 
-	<Label item="OBW_PriceLabel">
-		<ScreenID>OBW_PriceLabel</ScreenID>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>10</X><Y>32</Y></Location>
-		<Size><CX>80</CX><CY>18</CY></Size>
-		<Text>Price (pp):</Text>
-		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
-		<NoWrap>true</NoWrap>
-	</Label>
-
-	<Editbox item="OBW_PriceEdit">
-		<ScreenID>OBW_PriceEdit</ScreenID>
-		<DrawTemplate>WDT_Inner</DrawTemplate>
-		<RelativePosition>true</RelativePosition>
-		<Style_Border>true</Style_Border>
-		<Location><X>90</X><Y>30</Y></Location>
-		<Size><CX>60</CX><CY>20</CY></Size>
-		<TooltipReference>Price per item, in platinum. Used by both List (the pending item) and Modify Selected Price (existing listings).</TooltipReference>
-		<Text></Text>
-		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
-	</Editbox>
-
 	<Button item="OBW_ListButton">
 		<ScreenID>OBW_ListButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>158</X><Y>30</Y></Location>
-		<Size><CX>90</CX><CY>20</CY></Size>
-		<TooltipReference>Price the pending item using the amount above and list it on the Bazaar.</TooltipReference>
+		<Location><X>320</X><Y>8</Y></Location>
+		<Size><CX>100</CX><CY>20</CY></Size>
+		<TooltipReference>Price the pending item and list it on the Bazaar (opens a price entry popup).</TooltipReference>
 		<Text>List</Text>
 		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
 		<Style_Transparent>false</Style_Transparent>
@@ -50,7 +28,7 @@
 	<Button item="OBW_RefreshButton">
 		<ScreenID>OBW_RefreshButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>428</X><Y>30</Y></Location>
+		<Location><X>428</X><Y>8</Y></Location>
 		<Size><CX>72</CX><CY>20</CY></Size>
 		<Text>Refresh</Text>
 		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
@@ -80,7 +58,7 @@
 		<RelativePosition>true</RelativePosition>
 		<Location><X>10</X><Y>344</Y></Location>
 		<Size><CX>160</CX><CY>22</CY></Size>
-		<TooltipReference>Update the price of every selected listing to the amount above.</TooltipReference>
+		<TooltipReference>Update the price of every selected listing (opens a price entry popup).</TooltipReference>
 		<Text>Modify Selected Price</Text>
 		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
 		<Style_Transparent>false</Style_Transparent>
@@ -127,8 +105,6 @@
 		<MinVSize>240</MinVSize>
 		<MinHSize>360</MinHSize>
 		<Pieces>OBW_PendingLabel</Pieces>
-		<Pieces>OBW_PriceLabel</Pieces>
-		<Pieces>OBW_PriceEdit</Pieces>
 		<Pieces>OBW_ListButton</Pieces>
 		<Pieces>OBW_RefreshButton</Pieces>
 		<Pieces>OBW_ListingList</Pieces>

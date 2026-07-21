@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<!-- Price-entry popup, shared by the Offline Bazaar Listing window's List
+	     (pricing a pending hand-in) and Modify Selected Price (repricing one
+	     or more existing listings) buttons — same shape and convention as
+	     Celestial Bank's Withdraw Amount popup (EQUI_NativeCelestialBankWnd.xml's
+	     CBWD_* pieces / NativeCelestialBankWithdrawWnd): a small fixed-size
+	     popup with a title that changes per-use, an amount edit box, and
+	     Confirm/Cancel. Fixed size, not sizable — never needs a reflow. -->
+
+	<Label item="OBWP_TitleLabel">
+		<ScreenID>OBWP_TitleLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>230</CX><CY>18</CY></Size>
+		<Text>Price (in platinum):</Text>
+		<TextColor><R>255</R><G>235</G><B>160</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="OBWP_AmountEdit">
+		<ScreenID>OBWP_AmountEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>10</X><Y>32</Y></Location>
+		<Size><CX>100</CX><CY>22</CY></Size>
+		<TooltipReference>Price per item, in platinum.</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="OBWP_ConfirmButton">
+		<ScreenID>OBWP_ConfirmButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>20</X><Y>68</Y></Location>
+		<Size><CX>100</CX><CY>26</CY></Size>
+		<TooltipReference>Confirm this price.</TooltipReference>
+		<Text>Confirm</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="OBWP_CancelButton">
+		<ScreenID>OBWP_CancelButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>130</X><Y>68</Y></Location>
+		<Size><CX>100</CX><CY>26</CY></Size>
+		<Text>Cancel</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Screen item="NativeOfflineBazaarPriceWnd">
+		<ScreenID>NativeOfflineBazaarPriceWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>260</X><Y>160</Y></Location>
+		<Size><CX>250</CX><CY>128</CY></Size>
+		<Text>Set Price</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>false</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>false</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<Pieces>OBWP_TitleLabel</Pieces>
+		<Pieces>OBWP_AmountEdit</Pieces>
+		<Pieces>OBWP_ConfirmButton</Pieces>
+		<Pieces>OBWP_CancelButton</Pieces>
+	</Screen>
+</XML>
