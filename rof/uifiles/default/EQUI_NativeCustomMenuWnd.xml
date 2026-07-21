@@ -11,10 +11,14 @@
 	     gold accent color ties this window's branding to the multi-select
 	     highlight used in the Celestial Bank window.
 
-	     Two columns: column 1 (X=8) holds Advanced Loot/Persona/Celestial
-	     Bank/Autoskill/Autospell/Factions; column 2 (X=152) starts fresh with
-	     Achievements/Collections/Pets/Timestamps/Parcels. Column 1 has 6 rows,
-	     column 2 has 5 — the window's overall height is sized to column 1. -->
+	     Two columns, buttons ordered alphabetically by label reading top-to-
+	     bottom then left-to-right: column 1 (X=8) holds Achievements/Advanced
+	     Loot/Autoskill/Autospell/Celestial Bank/Collections; column 2 (X=152)
+	     continues with Factions/Parcels/Persona/Pets/Timestamps. Column 1 has
+	     6 rows, column 2 has 5 — the window's overall height is sized to
+	     column 1. Adding a new button: pick its alphabetical slot, shift
+	     everything after it down one row (and into column 2 if column 1
+	     overflows past 6). -->
 
 	<Label item="CUST_SubtitleLabel">
 		<ScreenID>CUST_SubtitleLabel</ScreenID>
@@ -26,10 +30,23 @@
 		<NoWrap>true</NoWrap>
 	</Label>
 
+	<Button item="CUST_AchievementsButton">
+		<ScreenID>CUST_AchievementsButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>8</X><Y>38</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Achievements</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Achievements window</TooltipReference>
+	</Button>
+
 	<Button item="CUST_AutoLootButton">
 		<ScreenID>CUST_AutoLootButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>8</X><Y>38</Y></Location>
+		<Location><X>8</X><Y>64</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Advanced Loot</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -39,36 +56,10 @@
 		<TooltipReference>Open/close the Advanced Loot window</TooltipReference>
 	</Button>
 
-	<Button item="CUST_PersonaButton">
-		<ScreenID>CUST_PersonaButton</ScreenID>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>8</X><Y>64</Y></Location>
-		<Size><CX>134</CX><CY>22</CY></Size>
-		<Text>Persona</Text>
-		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
-		<Style_Transparent>false</Style_Transparent>
-		<Style_Checkbox>false</Style_Checkbox>
-		<Template>BDT_Normal</Template>
-		<TooltipReference>Open/close the Persona window</TooltipReference>
-	</Button>
-
-	<Button item="CUST_CelestialBankButton">
-		<ScreenID>CUST_CelestialBankButton</ScreenID>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>8</X><Y>90</Y></Location>
-		<Size><CX>134</CX><CY>22</CY></Size>
-		<Text>Celestial Bank</Text>
-		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
-		<Style_Transparent>false</Style_Transparent>
-		<Style_Checkbox>false</Style_Checkbox>
-		<Template>BDT_Normal</Template>
-		<TooltipReference>Open/close the Celestial Bank window</TooltipReference>
-	</Button>
-
 	<Button item="CUST_AutoskillButton">
 		<ScreenID>CUST_AutoskillButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>8</X><Y>116</Y></Location>
+		<Location><X>8</X><Y>90</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Autoskill</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -81,7 +72,7 @@
 	<Button item="CUST_AutospellButton">
 		<ScreenID>CUST_AutospellButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>8</X><Y>142</Y></Location>
+		<Location><X>8</X><Y>116</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Autospell</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -91,36 +82,23 @@
 		<TooltipReference>Open/close the Autospell window</TooltipReference>
 	</Button>
 
-	<Button item="CUST_FactionButton">
-		<ScreenID>CUST_FactionButton</ScreenID>
+	<Button item="CUST_CelestialBankButton">
+		<ScreenID>CUST_CelestialBankButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>8</X><Y>168</Y></Location>
+		<Location><X>8</X><Y>142</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
-		<Text>Factions</Text>
+		<Text>Celestial Bank</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
 		<Style_Transparent>false</Style_Transparent>
 		<Style_Checkbox>false</Style_Checkbox>
 		<Template>BDT_Normal</Template>
-		<TooltipReference>Open/close the Faction Standings window</TooltipReference>
-	</Button>
-
-	<Button item="CUST_AchievementsButton">
-		<ScreenID>CUST_AchievementsButton</ScreenID>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>152</X><Y>38</Y></Location>
-		<Size><CX>134</CX><CY>22</CY></Size>
-		<Text>Achievements</Text>
-		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
-		<Style_Transparent>false</Style_Transparent>
-		<Style_Checkbox>false</Style_Checkbox>
-		<Template>BDT_Normal</Template>
-		<TooltipReference>Open/close the Achievements window</TooltipReference>
+		<TooltipReference>Open/close the Celestial Bank window</TooltipReference>
 	</Button>
 
 	<Button item="CUST_CollectionsButton">
 		<ScreenID>CUST_CollectionsButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>152</X><Y>64</Y></Location>
+		<Location><X>8</X><Y>168</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Collections</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -130,10 +108,49 @@
 		<TooltipReference>Open/close the Collections window</TooltipReference>
 	</Button>
 
+	<Button item="CUST_FactionButton">
+		<ScreenID>CUST_FactionButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>152</X><Y>38</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Factions</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Faction Standings window</TooltipReference>
+	</Button>
+
+	<Button item="CUST_ParcelButton">
+		<ScreenID>CUST_ParcelButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>152</X><Y>64</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Parcels</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Parcel window</TooltipReference>
+	</Button>
+
+	<Button item="CUST_PersonaButton">
+		<ScreenID>CUST_PersonaButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>152</X><Y>90</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Persona</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Persona window</TooltipReference>
+	</Button>
+
 	<Button item="CUST_PetButton">
 		<ScreenID>CUST_PetButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>152</X><Y>90</Y></Location>
+		<Location><X>152</X><Y>116</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Pets</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -146,7 +163,7 @@
 	<Button item="CUST_ChatTimestampsButton">
 		<ScreenID>CUST_ChatTimestampsButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>152</X><Y>116</Y></Location>
+		<Location><X>152</X><Y>142</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
 		<Text>Timestamps: OFF</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
@@ -154,19 +171,6 @@
 		<Style_Checkbox>false</Style_Checkbox>
 		<Template>BDT_Normal</Template>
 		<TooltipReference>Toggle local chat timestamps (client-side only, no server round trip)</TooltipReference>
-	</Button>
-
-	<Button item="CUST_ParcelButton">
-		<ScreenID>CUST_ParcelButton</ScreenID>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>152</X><Y>142</Y></Location>
-		<Size><CX>134</CX><CY>22</CY></Size>
-		<Text>Parcels</Text>
-		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
-		<Style_Transparent>false</Style_Transparent>
-		<Style_Checkbox>false</Style_Checkbox>
-		<Template>BDT_Normal</Template>
-		<TooltipReference>Open/close the Parcel window</TooltipReference>
 	</Button>
 
 	<Screen item="NativeCustomMenuWnd">
@@ -184,17 +188,17 @@
 		<Style_Transparent>false</Style_Transparent>
 		<Escapable>false</Escapable>
 		<Pieces>CUST_SubtitleLabel</Pieces>
+		<Pieces>CUST_AchievementsButton</Pieces>
 		<Pieces>CUST_AutoLootButton</Pieces>
-		<Pieces>CUST_PersonaButton</Pieces>
-		<Pieces>CUST_CelestialBankButton</Pieces>
 		<Pieces>CUST_AutoskillButton</Pieces>
 		<Pieces>CUST_AutospellButton</Pieces>
-		<Pieces>CUST_FactionButton</Pieces>
-		<Pieces>CUST_AchievementsButton</Pieces>
+		<Pieces>CUST_CelestialBankButton</Pieces>
 		<Pieces>CUST_CollectionsButton</Pieces>
+		<Pieces>CUST_FactionButton</Pieces>
+		<Pieces>CUST_ParcelButton</Pieces>
+		<Pieces>CUST_PersonaButton</Pieces>
 		<Pieces>CUST_PetButton</Pieces>
 		<Pieces>CUST_ChatTimestampsButton</Pieces>
-		<Pieces>CUST_ParcelButton</Pieces>
 	</Screen>
 
 </XML>
