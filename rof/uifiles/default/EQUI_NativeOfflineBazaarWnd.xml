@@ -10,6 +10,7 @@
 		<Text>Pending: (nothing)</Text>
 		<TextColor><R>255</R><G>255</G><B>102</B></TextColor>
 		<NoWrap>true</NoWrap>
+		<TooltipReference>Only set by handing an item to the broker in person; the List button no longer needs this -- pick the item up and click List instead.</TooltipReference>
 	</Label>
 
 	<Button item="OBW_ListButton">
@@ -17,7 +18,7 @@
 		<RelativePosition>true</RelativePosition>
 		<Location><X>320</X><Y>8</Y></Location>
 		<Size><CX>100</CX><CY>20</CY></Size>
-		<TooltipReference>Price the pending item and list it on the Bazaar (opens a price entry popup).</TooltipReference>
+		<TooltipReference>Pick up the item on your cursor, then click here to price and list it (opens a price entry popup).</TooltipReference>
 		<Text>List</Text>
 		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
 		<Style_Transparent>false</Style_Transparent>
