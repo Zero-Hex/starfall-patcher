@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<XML ID="EQInterfaceDefinitionLanguage">
+	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
+
+	<Label item="OBW_PendingLabel">
+		<ScreenID>OBW_PendingLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>10</Y></Location>
+		<Size><CX>300</CX><CY>18</CY></Size>
+		<Text>Pending: (nothing)</Text>
+		<TextColor><R>255</R><G>255</G><B>102</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Label item="OBW_PriceLabel">
+		<ScreenID>OBW_PriceLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>32</Y></Location>
+		<Size><CX>80</CX><CY>18</CY></Size>
+		<Text>Price (pp):</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Editbox item="OBW_PriceEdit">
+		<ScreenID>OBW_PriceEdit</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<RelativePosition>true</RelativePosition>
+		<Style_Border>true</Style_Border>
+		<Location><X>90</X><Y>30</Y></Location>
+		<Size><CX>60</CX><CY>20</CY></Size>
+		<TooltipReference>Price per item, in platinum. Used by both List (the pending item) and Modify Selected Price (existing listings).</TooltipReference>
+		<Text></Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+	</Editbox>
+
+	<Button item="OBW_ListButton">
+		<ScreenID>OBW_ListButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>158</X><Y>30</Y></Location>
+		<Size><CX>90</CX><CY>20</CY></Size>
+		<TooltipReference>Price the pending item using the amount above and list it on the Bazaar.</TooltipReference>
+		<Text>List</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="OBW_RefreshButton">
+		<ScreenID>OBW_RefreshButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>428</X><Y>30</Y></Location>
+		<Size><CX>72</CX><CY>20</CY></Size>
+		<Text>Refresh</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Listbox item="OBW_ListingList">
+		<ScreenID>OBW_ListingList</ScreenID>
+		<DrawTemplate>WDT_Inner</DrawTemplate>
+		<TooltipReference>Your current Offline Bazaar listings. Ctrl+Click to select multiple rows for Modify Price / Withdraw.</TooltipReference>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>58</Y></Location>
+		<Size><CX>490</CX><CY>280</CY></Size>
+		<Style_Border>true</Style_Border>
+		<Style_VScroll>true</Style_VScroll>
+		<Columns><Width>24</Width><Heading></Heading></Columns>
+		<Columns><Width>180</Width><Heading>Item</Heading></Columns>
+		<Columns><Width>50</Width><Heading>Qty</Heading></Columns>
+		<Columns><Width>90</Width><Heading>Price Ea.</Heading></Columns>
+		<Columns><Width>90</Width><Heading>Total</Heading></Columns>
+	</Listbox>
+
+	<Button item="OBW_ModifyButton">
+		<ScreenID>OBW_ModifyButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>344</Y></Location>
+		<Size><CX>160</CX><CY>22</CY></Size>
+		<TooltipReference>Update the price of every selected listing to the amount above.</TooltipReference>
+		<Text>Modify Selected Price</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Button item="OBW_WithdrawButton">
+		<ScreenID>OBW_WithdrawButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>178</X><Y>344</Y></Location>
+		<Size><CX>140</CX><CY>22</CY></Size>
+		<TooltipReference>Pull every selected listing back (delivered via parcel).</TooltipReference>
+		<Text>Withdraw Selected</Text>
+		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+	</Button>
+
+	<Label item="OBW_StatusLabel">
+		<ScreenID>OBW_StatusLabel</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>10</X><Y>372</Y></Location>
+		<Size><CX>490</CX><CY>18</CY></Size>
+		<Text></Text>
+		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
+		<NoWrap>true</NoWrap>
+	</Label>
+
+	<Screen item="NativeOfflineBazaarWnd">
+		<ScreenID>NativeOfflineBazaarWnd</ScreenID>
+		<RelativePosition>false</RelativePosition>
+		<Location><X>150</X><Y>90</Y></Location>
+		<Size><CX>510</CX><CY>420</CY></Size>
+		<Text>Offline Bazaar Listings</Text>
+		<DrawTemplate>WDT_Def</DrawTemplate>
+		<Style_Titlebar>true</Style_Titlebar>
+		<Style_Closebox>true</Style_Closebox>
+		<Style_Minimizebox>true</Style_Minimizebox>
+		<Style_Border>true</Style_Border>
+		<Style_Sizable>true</Style_Sizable>
+		<Style_Transparent>false</Style_Transparent>
+		<MinVSize>240</MinVSize>
+		<MinHSize>360</MinHSize>
+		<Pieces>OBW_PendingLabel</Pieces>
+		<Pieces>OBW_PriceLabel</Pieces>
+		<Pieces>OBW_PriceEdit</Pieces>
+		<Pieces>OBW_ListButton</Pieces>
+		<Pieces>OBW_RefreshButton</Pieces>
+		<Pieces>OBW_ListingList</Pieces>
+		<Pieces>OBW_ModifyButton</Pieces>
+		<Pieces>OBW_WithdrawButton</Pieces>
+		<Pieces>OBW_StatusLabel</Pieces>
+	</Screen>
+</XML>

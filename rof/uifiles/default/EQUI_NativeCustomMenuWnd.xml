@@ -13,9 +13,8 @@
 
 	     Two columns: column 1 (X=8) holds Advanced Loot/Persona/Celestial
 	     Bank/Autoskill/Autospell/Factions; column 2 (X=152) starts fresh with
-	     Achievements/Collections/Pets/Timestamps. Column 1 is taller (6 rows)
-	     than column 2 (4 rows), so the window's overall height is sized to
-	     column 1. -->
+	     Achievements/Collections/Pets/Timestamps/Parcels. Column 1 has 6 rows,
+	     column 2 has 5 — the window's overall height is sized to column 1. -->
 
 	<Label item="CUST_SubtitleLabel">
 		<ScreenID>CUST_SubtitleLabel</ScreenID>
@@ -157,6 +156,19 @@
 		<TooltipReference>Toggle local chat timestamps (client-side only, no server round trip)</TooltipReference>
 	</Button>
 
+	<Button item="CUST_ParcelButton">
+		<ScreenID>CUST_ParcelButton</ScreenID>
+		<RelativePosition>true</RelativePosition>
+		<Location><X>152</X><Y>142</Y></Location>
+		<Size><CX>134</CX><CY>22</CY></Size>
+		<Text>Parcels</Text>
+		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
+		<Style_Transparent>false</Style_Transparent>
+		<Style_Checkbox>false</Style_Checkbox>
+		<Template>BDT_Normal</Template>
+		<TooltipReference>Open/close the Parcel window</TooltipReference>
+	</Button>
+
 	<Screen item="NativeCustomMenuWnd">
 		<ScreenID>NativeCustomMenuWnd</ScreenID>
 		<RelativePosition>false</RelativePosition>
@@ -182,6 +194,7 @@
 		<Pieces>CUST_CollectionsButton</Pieces>
 		<Pieces>CUST_PetButton</Pieces>
 		<Pieces>CUST_ChatTimestampsButton</Pieces>
+		<Pieces>CUST_ParcelButton</Pieces>
 	</Screen>
 
 </XML>
