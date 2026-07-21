@@ -29,7 +29,7 @@
 	<Button item="OBW_RefreshButton">
 		<ScreenID>OBW_RefreshButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>428</X><Y>8</Y></Location>
+		<Location><X>478</X><Y>8</Y></Location>
 		<Size><CX>72</CX><CY>20</CY></Size>
 		<Text>Refresh</Text>
 		<TextColor><R>255</R><G>255</G><B>255</B></TextColor>
@@ -44,12 +44,13 @@
 		<TooltipReference>Your current Offline Bazaar listings. Ctrl+Click to select multiple rows for Modify Price / Withdraw.</TooltipReference>
 		<RelativePosition>true</RelativePosition>
 		<Location><X>10</X><Y>58</Y></Location>
-		<Size><CX>490</CX><CY>280</CY></Size>
+		<Size><CX>540</CX><CY>280</CY></Size>
 		<Style_Border>true</Style_Border>
 		<Style_VScroll>true</Style_VScroll>
 		<Columns><Width>24</Width><Heading></Heading></Columns>
-		<Columns><Width>180</Width><Heading>Item</Heading></Columns>
+		<Columns><Width>160</Width><Heading>Item</Heading></Columns>
 		<Columns><Width>50</Width><Heading>Qty</Heading></Columns>
+		<Columns><Width>60</Width><Heading>Charges</Heading></Columns>
 		<Columns><Width>90</Width><Heading>Price Ea.</Heading></Columns>
 		<Columns><Width>90</Width><Heading>Total</Heading></Columns>
 	</Listbox>
@@ -84,7 +85,7 @@
 		<ScreenID>OBW_StatusLabel</ScreenID>
 		<RelativePosition>true</RelativePosition>
 		<Location><X>10</X><Y>372</Y></Location>
-		<Size><CX>490</CX><CY>18</CY></Size>
+		<Size><CX>540</CX><CY>18</CY></Size>
 		<Text></Text>
 		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
 		<NoWrap>true</NoWrap>
@@ -94,7 +95,7 @@
 		<ScreenID>NativeOfflineBazaarWnd</ScreenID>
 		<RelativePosition>false</RelativePosition>
 		<Location><X>150</X><Y>90</Y></Location>
-		<Size><CX>510</CX><CY>420</CY></Size>
+		<Size><CX>560</CX><CY>420</CY></Size>
 		<Text>Offline Bazaar Listings</Text>
 		<DrawTemplate>WDT_Def</DrawTemplate>
 		<Style_Titlebar>true</Style_Titlebar>
