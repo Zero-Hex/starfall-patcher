@@ -2,13 +2,14 @@
 <XML ID="EQInterfaceDefinitionLanguage">
 	<Schema xmlns="EverQuestData" xmlns:dt="EverQuestDataTypes" />
 
-	<!-- Native Help / Reference window. Mirrors EQUI_NativeCollectionWnd.xml's
-	     layout and coordinate scheme, minus the Items list, since there is no
-	     per-character progress to show here, just static documentation, so
-	     the Detail panel's body label simply owns the extra vertical space
-	     that would otherwise go to a sub-list. Non-sizable (like the
-	     original Achievements window) since nothing here needs to grow on
-	     resize; no ReflowIfResized required client-side. -->
+	<!-- Native Help / Reference window. Two panels, not three: Topics render
+	     as children directly under their category in HELPW_CategoryList
+	     (simulated tree, same as Achievements'/Collections' category lists,
+	     since CListWnd has no native indent/expand support), which frees the
+	     whole right side for the Details panel instead of splitting it with
+	     a separate Topics list. Non-sizable (like the original Achievements
+	     window) since nothing here needs to grow on resize; no
+	     ReflowIfResized required client-side. -->
 
 	<Screen item="HELPW_SummaryPanel">
 		<ScreenID>HELPW_SummaryPanel</ScreenID>
@@ -51,7 +52,7 @@
 		<RelativePosition>true</RelativePosition>
 		<Location><X>452</X><Y>18</Y></Location>
 		<Size><CX>172</CX><CY>18</CY></Size>
-		<Text>Reference only -- no character data</Text>
+		<Text>Reference only</Text>
 		<Font>2</Font>
 		<TextColor><R>176</R><G>141</G><B>66</B></TextColor>
 		<NoWrap>true</NoWrap>
@@ -104,7 +105,7 @@
 		<Style_VScroll>true</Style_VScroll>
 		<Style_HScroll>false</Style_HScroll>
 		<Style_Transparent>false</Style_Transparent>
-		<Columns><Width>230</Width><Heading>Category</Heading></Columns>
+		<Columns><Width>230</Width><Heading></Heading></Columns>
 	</Listbox>
 
 	<Label item="HELPW_CategoryFooterLabel">
@@ -112,56 +113,18 @@
 		<RelativePosition>true</RelativePosition>
 		<Location><X>24</X><Y>566</Y></Location>
 		<Size><CX>214</CX><CY>16</CY></Size>
-		<Text>Select a category.</Text>
+		<Text>Click a category to expand it.</Text>
 		<Font>1</Font>
 		<TextColor><R>190</R><G>210</G><B>230</B></TextColor>
 		<NoWrap>true</NoWrap>
 	</Label>
 
-	<Screen item="HELPW_EntryPanel">
-		<ScreenID>HELPW_EntryPanel</ScreenID>
-		<DrawTemplate>WDT_RoundedNoTitle</DrawTemplate>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>266</X><Y>94</Y></Location>
-		<Size><CX>562</CX><CY>250</CY></Size>
-		<Style_Titlebar>false</Style_Titlebar>
-		<Style_Minimizebox>false</Style_Minimizebox>
-		<Style_Border>true</Style_Border>
-		<Style_Transparent>false</Style_Transparent>
-		<Style_Sizable>false</Style_Sizable>
-		<Style_Closebox>false</Style_Closebox>
-	</Screen>
-
-	<Label item="HELPW_EntryHeaderLabel">
-		<ScreenID>HELPW_EntryHeaderLabel</ScreenID>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>278</X><Y>104</Y></Location>
-		<Size><CX>150</CX><CY>18</CY></Size>
-		<Text>Topics</Text>
-		<Font>3</Font>
-		<TextColor><R>248</R><G>189</G><B>33</B></TextColor>
-		<NoWrap>true</NoWrap>
-	</Label>
-
-	<Listbox item="HELPW_EntryList">
-		<ScreenID>HELPW_EntryList</ScreenID>
-		<DrawTemplate>WDT_Inner</DrawTemplate>
-		<RelativePosition>true</RelativePosition>
-		<Location><X>274</X><Y>128</Y></Location>
-		<Size><CX>546</CX><CY>204</CY></Size>
-		<Style_Border>true</Style_Border>
-		<Style_VScroll>true</Style_VScroll>
-		<Style_HScroll>false</Style_HScroll>
-		<Style_Transparent>false</Style_Transparent>
-		<Columns><Width>546</Width><Heading>Title</Heading></Columns>
-	</Listbox>
-
 	<Screen item="HELPW_DetailPanel">
 		<ScreenID>HELPW_DetailPanel</ScreenID>
 		<DrawTemplate>WDT_RoundedNoTitle</DrawTemplate>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>266</X><Y>352</Y></Location>
-		<Size><CX>562</CX><CY>242</CY></Size>
+		<Location><X>266</X><Y>94</Y></Location>
+		<Size><CX>562</CX><CY>500</CY></Size>
 		<Style_Titlebar>false</Style_Titlebar>
 		<Style_Minimizebox>false</Style_Minimizebox>
 		<Style_Border>true</Style_Border>
@@ -173,7 +136,7 @@
 	<Label item="HELPW_DetailHeaderLabel">
 		<ScreenID>HELPW_DetailHeaderLabel</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>278</X><Y>362</Y></Location>
+		<Location><X>278</X><Y>104</Y></Location>
 		<Size><CX>126</CX><CY>18</CY></Size>
 		<Text>Details</Text>
 		<Font>3</Font>
@@ -184,7 +147,7 @@
 	<Label item="HELPW_DetailTitleLabel">
 		<ScreenID>HELPW_DetailTitleLabel</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>278</X><Y>386</Y></Location>
+		<Location><X>278</X><Y>128</Y></Location>
 		<Size><CX>530</CX><CY>22</CY></Size>
 		<Text>Select a topic</Text>
 		<Font>4</Font>
@@ -195,8 +158,8 @@
 	<Label item="HELPW_DetailBodyLabel">
 		<ScreenID>HELPW_DetailBodyLabel</ScreenID>
 		<RelativePosition>true</RelativePosition>
-		<Location><X>278</X><Y>412</Y></Location>
-		<Size><CX>530</CX><CY>174</CY></Size>
+		<Location><X>278</X><Y>154</Y></Location>
+		<Size><CX>530</CX><CY>430</CY></Size>
 		<Text></Text>
 		<Font>2</Font>
 		<TextColor><R>210</R><G>220</G><B>235</B></TextColor>
@@ -250,9 +213,6 @@
 		<Pieces>Label:HELPW_CategoryHeaderLabel</Pieces>
 		<Pieces>Listbox:HELPW_CategoryList</Pieces>
 		<Pieces>Label:HELPW_CategoryFooterLabel</Pieces>
-		<Pieces>Screen:HELPW_EntryPanel</Pieces>
-		<Pieces>Label:HELPW_EntryHeaderLabel</Pieces>
-		<Pieces>Listbox:HELPW_EntryList</Pieces>
 		<Pieces>Screen:HELPW_DetailPanel</Pieces>
 		<Pieces>Label:HELPW_DetailHeaderLabel</Pieces>
 		<Pieces>Label:HELPW_DetailTitleLabel</Pieces>
