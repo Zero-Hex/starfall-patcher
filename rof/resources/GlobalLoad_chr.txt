@@ -1,4 +1,4 @@
-15
+20
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -13,3 +13,9 @@ sdf,sdf_chr
 hss,hss_chr
 rea,rea_chr
 bat,qeynos2_chr
+orc,sro_chr
+spi,ecommons_chr
+sna,_ecommons_chr
+sku,butcher_chr
+wru,hohonora_chr
+ikg,karnor_chr
