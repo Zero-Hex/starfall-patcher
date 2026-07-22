@@ -14,11 +14,18 @@
 	     Two columns, buttons ordered alphabetically by label reading top-to-
 	     bottom then left-to-right: column 1 (X=8) holds Achievements/Advanced
 	     Loot/Autoskill/Autospell/Celestial Bank/Collections; column 2 (X=152)
-	     continues with Factions/Parcels/Persona/Pet Equipment/Pets/Timestamps.
+	     continues with Factions/Parcels/Persona/Pet Equipment/Pets/Help.
 	     Both columns have 6 rows now — the window's overall height is sized
 	     to fit 6 rows. Adding a new button: pick its alphabetical slot, shift
 	     everything after it down one row (and into column 2 if column 1
-	     overflows past 6, or grow the window if column 2 overflows past 6). -->
+	     overflows past 6, or grow the window if column 2 overflows past 6).
+
+	     Help occupies the LAST slot (152,168), out of strict alphabetical
+	     order, because it directly replaced the Chat Timestamps button there
+	     (moving it to its correct alphabetical slot would have meant
+	     reshuffling every button after Collections) — chat timestamp
+	     toggling moved to a plain #timestamps command (documented inside the
+	     new Help window itself) since it no longer has a toolbar button. -->
 
 	<Label item="CUST_SubtitleLabel">
 		<ScreenID>CUST_SubtitleLabel</ScreenID>
@@ -173,17 +180,17 @@
 		<TooltipReference>Open/close the Pets window</TooltipReference>
 	</Button>
 
-	<Button item="CUST_ChatTimestampsButton">
-		<ScreenID>CUST_ChatTimestampsButton</ScreenID>
+	<Button item="CUST_HelpButton">
+		<ScreenID>CUST_HelpButton</ScreenID>
 		<RelativePosition>true</RelativePosition>
 		<Location><X>152</X><Y>168</Y></Location>
 		<Size><CX>134</CX><CY>22</CY></Size>
-		<Text>Timestamps: OFF</Text>
+		<Text>Help</Text>
 		<TextColor><R>255</R><G>204</G><B>51</B></TextColor>
 		<Style_Transparent>false</Style_Transparent>
 		<Style_Checkbox>false</Style_Checkbox>
 		<Template>BDT_Normal</Template>
-		<TooltipReference>Toggle local chat timestamps (client-side only, no server round trip)</TooltipReference>
+		<TooltipReference>Open/close the Help &amp; Reference window</TooltipReference>
 	</Button>
 
 	<Screen item="NativeCustomMenuWnd">
@@ -212,7 +219,7 @@
 		<Pieces>CUST_PersonaButton</Pieces>
 		<Pieces>CUST_PetEquipButton</Pieces>
 		<Pieces>CUST_PetButton</Pieces>
-		<Pieces>CUST_ChatTimestampsButton</Pieces>
+		<Pieces>CUST_HelpButton</Pieces>
 	</Screen>
 
 </XML>
