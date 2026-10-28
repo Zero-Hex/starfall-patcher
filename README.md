@@ -7,29 +7,38 @@ EQEmu File Comparison and Patcher
 
 ## Starfall setup notes
 
-This fork is wired up for Starfall specifically:
+The patch itself is hosted by **Spire**, not this repository:
 
-- **`rof/spells_us.txt`, `rof/resources/SkillCaps.txt`, `rof/resources/BaseData.txt`,
-  `rof/dbstr_us.txt`** are kept in sync automatically from Spire by
-  `.github/workflows/sync-spire.yml`, which runs every 30 minutes (and can be
-  triggered manually from the Actions tab via "Run workflow"). It only commits
-  when the fetched content actually changed, and that commit triggers the
-  normal `build.yml` pipeline to regenerate the filelist and publish a new
-  release.
-- **Everything else** (the client DLL, custom UI XML files, anything not
-  pulled from Spire) is added manually: drop the file into `rof/` at the path
-  it should land at on a player's machine (e.g. a UI file goes in
-  `rof/uifiles/default/EQUI_Whatever.xml`), commit, and push to `master`. That
-  push alone triggers `build.yml` to rebuild and publish — no other steps
-  needed.
-- The client version folder is `rof/` (Rain of Fear), matching this fork's
-  default. If Starfall's client isn't RoF/RoF2, this folder (and the
-  `supportedClients` list in `MainForm.cs`) needs to change accordingly.
-- `SERVER_NAME` and `FILE_NAME` can be customized under repo *Settings →
-  Secrets and variables → Actions → Variables* — left unset, they default to
-  "EQEmu Patcher" / "eqemupatcher". `FILELIST_URL`, `PATCHER_URL`, and
-  `STORAGE_URL` default to this repo's own GitHub-hosted URLs, which is what
-  you want unless you're moving hosting elsewhere later.
+- **Spire builds and serves it.** In Spire, *Starfall → Client Patch* holds every
+  file players need: `spells_us.txt`, `dbstr_us.txt`, `Resources/SkillCaps.txt`
+  and `Resources/BaseData.txt` are made from the database (by the server's
+  `export_client_files`); icon sheets and item models come from *Icons & Models*;
+  everything else (`dinput8.dll`, `eqhost.txt`, `EQUI*.xml`, `_chr.txt`, ...) is
+  uploaded there once, to the folder it goes in.
+- **Publish for the patcher** freezes what is there. Players' patchers read
+  `<FILELIST_URL>rof/filelist_rof.yml` from Spire and download only the files whose
+  MD5 differs from theirs. Nothing changes for players until you publish.
+- **This repository builds only the patcher program.** `build.yml` runs when the
+  patcher's code changes (or by hand from the Actions tab), and every player's
+  patcher updates itself to the new release. Changing game files does not need a
+  new release.
+
+Repository variables (*Settings → Secrets and variables → Actions → Variables*):
+
+- `FILELIST_URL`: Spire's patch address, shown on the Client Patch page. It defaults
+  to `http://15.204.93.56:3000/api/v1/patch/`.
+- `PATCHER_URL`: where patchers update themselves from. It defaults to this
+  repository's latest release.
+- `SERVER_NAME`, `FILE_NAME`: default to "EQEmu Patcher" / "eqemupatcher".
+
+Each release also carries a copy of Spire's `filelist_rof.yml`, taken when it is
+built. Patchers from before Spire hosted the patch read the file list there, and
+they stop without one. That copy points them at Spire for one patch, and they
+update themselves to the current patcher, which reads Spire directly. So the
+build fails if Spire has nothing published.
+
+The files this repository used to host (the old `rof/` folder) are in its git
+history.
 
 ---
 

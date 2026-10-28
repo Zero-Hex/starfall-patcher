@@ -1,2 +1,0 @@
-[LoginServer]
-Host=starfall-eqemu.com:5999
