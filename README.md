@@ -17,12 +17,22 @@ In Spire, *Starfall → Client Patch*:
   from the database by the server's `export_client_files`. Icon sheets and item
   models come from *Icons & Models*. Everything else (`dinput8.dll`, `eqhost.txt`,
   `EQUI*.xml`, `_chr.txt`, ...) is uploaded once, to the folder it goes in.
-  **Publish for the patcher** makes it what players get: their patcher reads
-  `<address>rof/filelist_rof.yml` and downloads only the files whose MD5 differs.
-- **The patcher program.** **Build patcher** runs this repository's `build.sh` on
-  the Spire server, with Spire's public patch address baked in. The build is staged:
-  **Download to try** it, then **Release to players**. Players' patchers update
-  themselves to it from `<address><name>-hash.txt` and `<address><name>.exe`.
+  Each file is set to Add (live and beta), Beta (beta only), Ignore (neither) or
+  Remove (deleted from players' clients if found).
+- **Two channels.** **Publish to Beta** publishes what Spire holds to the beta
+  channel, at `<address>beta/`. **Promote Beta to Live** then sends every player
+  exactly what beta published, without the Beta-only files, after showing what
+  changes. A patcher reads `<channel address>rof/filelist_rof.yml` and downloads
+  only the files whose MD5 differs.
+- **The patcher program, one per channel.** **Build patcher** runs this
+  repository's `build.sh` on the Spire server, with the channel's public patch
+  address baked in. The build is staged: **Download to try** it, then **Release**
+  it. Each channel's patchers update themselves to it from
+  `<channel address><name>-hash.txt` and `<channel address><name>.exe`. The beta
+  patcher has its own file name (e.g. `starfallpatcher-beta.exe`). Testers run it
+  in a copy of the client folder of its own: the two patchers keep their
+  settings in the same `eqemupatcher.yml`, and the live patcher leaves Beta-only
+  files where it finds them.
 
 To set that up, on the Spire server:
 
