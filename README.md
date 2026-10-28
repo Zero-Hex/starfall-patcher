@@ -7,35 +7,54 @@ EQEmu File Comparison and Patcher
 
 ## Starfall setup notes
 
-The patch itself is hosted by **Spire**, not this repository:
+**Spire hosts everything players get: the patch and this patcher.** Players'
+patchers talk only to Spire, never to GitHub.
 
-- **Spire builds and serves it.** In Spire, *Starfall → Client Patch* holds every
-  file players need: `spells_us.txt`, `dbstr_us.txt`, `Resources/SkillCaps.txt`
-  and `Resources/BaseData.txt` are made from the database (by the server's
-  `export_client_files`); icon sheets and item models come from *Icons & Models*;
-  everything else (`dinput8.dll`, `eqhost.txt`, `EQUI*.xml`, `_chr.txt`, ...) is
-  uploaded there once, to the folder it goes in.
-- **Publish for the patcher** freezes what is there. Players' patchers read
-  `<FILELIST_URL>rof/filelist_rof.yml` from Spire and download only the files whose
-  MD5 differs from theirs. Nothing changes for players until you publish.
-- **This repository builds only the patcher program.** `build.yml` runs when the
-  patcher's code changes (or by hand from the Actions tab), and every player's
-  patcher updates itself to the new release. Changing game files does not need a
-  new release.
+In Spire, *Starfall → Client Patch*:
 
-Repository variables (*Settings → Secrets and variables → Actions → Variables*):
+- **The patch.** Spire holds every file players need. `spells_us.txt`,
+  `dbstr_us.txt`, `Resources/SkillCaps.txt` and `Resources/BaseData.txt` are made
+  from the database by the server's `export_client_files`. Icon sheets and item
+  models come from *Icons & Models*. Everything else (`dinput8.dll`, `eqhost.txt`,
+  `EQUI*.xml`, `_chr.txt`, ...) is uploaded once, to the folder it goes in.
+  **Publish for the patcher** makes it what players get: their patcher reads
+  `<address>rof/filelist_rof.yml` and downloads only the files whose MD5 differs.
+- **The patcher program.** **Build patcher** runs this repository's `build.sh` on
+  the Spire server, with Spire's public patch address baked in. The build is staged:
+  **Download to try** it, then **Release to players**. Players' patchers update
+  themselves to it from `<address><name>-hash.txt` and `<address><name>.exe`.
 
-- `FILELIST_URL`: Spire's patch address, shown on the Client Patch page. It defaults
-  to `http://15.204.93.56:3000/api/v1/patch/`.
-- `PATCHER_URL`: where patchers update themselves from. It defaults to this
-  repository's latest release.
-- `SERVER_NAME`, `FILE_NAME`: default to "EQEmu Patcher" / "eqemupatcher".
+To set that up, on the Spire server:
 
-Each release also carries a copy of Spire's `filelist_rof.yml`, taken when it is
-built. Patchers from before Spire hosted the patch read the file list there, and
-they stop without one. That copy points them at Spire for one patch, and they
-update themselves to the current patcher, which reads Spire directly. So the
-build fails if Spire has nothing published.
+1. Install the .NET SDK (Debian: add Microsoft's package repository, then
+   `apt install dotnet-sdk-8.0`).
+2. Clone this repository somewhere Spire can read, e.g.
+   `git clone https://github.com/Zero-Hex/starfall-patcher ~/starfall-patcher`.
+3. On the Client Patch page, set the source folder to that clone and the public
+   address to how *players* reach Spire (e.g. `http://15.204.93.56:3000/api/v1/patch/`).
+   Tick *git pull before building* to build what is pushed here.
+
+`build.sh` builds the patcher anywhere the .NET SDK is installed:
+
+```sh
+FILELIST_URL=http://host:3000/api/v1/patch/ PATCHER_URL=http://host:3000/api/v1/patch/ \
+SERVER_NAME="Starfall" FILE_NAME=eqemupatcher VERSION=1.1.0.1 ./build.sh out/
+```
+
+### Moving players over from GitHub (once)
+
+Patchers built before this read their file list and update themselves from this
+repository's latest release. One last release moves them to Spire. `build.yml`
+makes it when this branch is merged to `master`. It builds the patcher with
+Spire as both addresses, and attaches a copy of Spire's `filelist_rof.yml`,
+because old patchers read that before they update themselves and stop without
+one. So publish in Spire first; the build fails if Spire has nothing published.
+After players have run their patcher once, GitHub releases are no longer read,
+and this repository can be made private.
+
+GitHub Actions has to be enabled for that release. `check-windows.yml` builds the
+patcher on Linux and loads it under .NET Framework on Windows whenever its code
+changes.
 
 The files this repository used to host (the old `rof/` folder) are in its git
 history.
