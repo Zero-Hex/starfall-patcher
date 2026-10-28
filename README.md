@@ -26,10 +26,14 @@ In Spire, *Starfall → Client Patch*:
 
 To set that up, on the Spire server:
 
-1. Install the .NET SDK (Debian: add Microsoft's package repository, then
-   `apt install dotnet-sdk-8.0`).
-2. Clone this repository somewhere Spire can read, e.g.
-   `git clone https://github.com/Zero-Hex/starfall-patcher ~/starfall-patcher`.
+1. Install the .NET SDK where Spire runs. In akk-stack that is inside the
+   `eqemu-server` container, as the eqemu user (Debian has no `dotnet-sdk`
+   package of its own):
+   `curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0`.
+   It goes in `~/.dotnet`, where Spire finds it.
+2. Clone this repository somewhere Spire can read (in akk-stack, inside the
+   container too), e.g.
+   `git clone -b spire-hosted https://github.com/Zero-Hex/starfall-patcher ~/starfall-patcher`.
 3. On the Client Patch page, set the source folder to that clone and the public
    address to how *players* reach Spire (e.g. `http://15.204.93.56:3000/api/v1/patch/`).
    Tick *git pull before building* to build what is pushed here.
