@@ -1,0 +1,80 @@
+name: Check the Linux-built patcher on Windows
+
+# Spire builds the patcher on Linux (build.sh). This builds it the same way and
+# loads it under .NET Framework on Windows: its settings, images, form, the
+# file list as the patcher reads it, and that it starts.
+
+on:
+  push:
+    paths:
+      - "EQEmu Patcher/**"
+      - "build.sh"
+      - ".github/workflows/check-windows.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build on Linux
+      run: |
+        FILELIST_URL=http://example.invalid/api/v1/patch/ PATCHER_URL=http://example.invalid/api/v1/patch/ \
+        SERVER_NAME="Check Server" FILE_NAME=checkpatcher VERSION=1.2.3.4 ./build.sh out
+    - uses: actions/upload-artifact@v4
+      with:
+        name: patcher
+        path: out/eqemupatcher.exe
+
+  windows:
+    needs: build
+    runs-on: windows-latest
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: patcher
+    - name: Load it under .NET Framework
+      shell: powershell
+      run: |
+        $ErrorActionPreference = "Stop"
+        $exe = (Resolve-Path .\eqemupatcher.exe).Path
+        "PowerShell on " + [Runtime.InteropServices.RuntimeInformation]::FrameworkDescription
+        $asm = [Reflection.Assembly]::LoadFile($exe)
+
+        function Check($what, $got, $want) {
+          if ("$got" -ne "$want") { throw "$what is '$got', want '$want'" }
+          "ok  $what = $got"
+        }
+        Check "version" $asm.GetName().Version "1.2.3.4"
+        Check "ServerName" $asm.GetCustomAttributes($asm.GetType("EQEmu_Patcher.ServerName"), $false)[0].Value "Check Server"
+        Check "FileName" $asm.GetCustomAttributes($asm.GetType("EQEmu_Patcher.FileName"), $false)[0].Value "checkpatcher"
+        Check "FileListUrl" $asm.GetCustomAttributes($asm.GetType("EQEmu_Patcher.FileListUrl"), $false)[0].Value "http://example.invalid/api/v1/patch/"
+        Check "PatcherUrl" $asm.GetCustomAttributes($asm.GetType("EQEmu_Patcher.PatcherUrl"), $false)[0].Value "http://example.invalid/api/v1/patch/"
+
+        $flags = [Reflection.BindingFlags]"Static,NonPublic,Public"
+        $rof = $asm.GetType("EQEmu_Patcher.Properties.Resources").GetProperty("rof", $flags).GetValue($null)
+        Check "rof image loads" ($rof.Width -gt 0) $true
+
+        $form = [Activator]::CreateInstance($asm.GetType("EQEmu_Patcher.MainForm"))
+        Check "form builds with its icon" ($form.Icon.Width -gt 0) $true
+
+        # the libraries are packed in the exe: YamlDotNet comes from inside it
+        $yaml = [Reflection.Assembly]::Load("YamlDotNet")
+        $builder = [Activator]::CreateInstance($yaml.GetType("YamlDotNet.Serialization.DeserializerBuilder"))
+        $builder = $builder.WithNamingConvention([Activator]::CreateInstance($yaml.GetType("YamlDotNet.Serialization.NamingConventions.CamelCaseNamingConvention")))
+        $list = "version: ""abc""`ndeletes: []`ndownloadprefix: ""http://x/rof/""`ndownloads:`n- name: ""uifiles/default/EQUI.xml""`n  md5: ""0CC175B9C0F1B6A831C399E269772661""`n  date: ""20261028""`n  size: 12`n"
+        $fl = $builder.Build().Deserialize([IO.StringReader]::new($list), $asm.GetType("EQEmu_Patcher.FileList"))
+        Check "file list name" $fl.downloads[0].name "uifiles/default/EQUI.xml"
+        Check "file list size" $fl.downloads[0].size 12
+        Check "file list prefix" $fl.downloadprefix "http://x/rof/"
+
+    - name: Start it
+      shell: powershell
+      run: |
+        # outside an EverQuest folder it opens and asks to be run in one; a
+        # patcher that cannot start exits instead
+        $p = Start-Process -FilePath .\eqemupatcher.exe -PassThru
+        Start-Sleep -Seconds 15
+        if ($p.HasExited) { throw "the patcher exited with code $($p.ExitCode)" }
+        "ok  still running after 15 seconds"
+        Stop-Process -Id $p.Id -Force

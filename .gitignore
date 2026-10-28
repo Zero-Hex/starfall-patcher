@@ -199,3 +199,4 @@ eqemupatcher.yml
 eqemupatcher.exe
 SolutionInfo.cs
 lib/
+FodyWeavers.xsd

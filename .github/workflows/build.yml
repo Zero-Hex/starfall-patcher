@@ -1,69 +1,53 @@
 name: Build and Release
 
-# The patch itself is published from Spire (Starfall > Client Patch > Publish
-# for the patcher). This builds the patcher program only, so a release (which
-# every player's patcher updates itself to) is made only when it changes.
+# Spire builds, hosts and updates the patcher (Starfall > Client Patch), so a
+# release here is only for patchers built before that: they read
+# filelist_rof.yml and update themselves from this repository's latest
+# release. This one release moves them to a patcher that reads Spire.
 
 on:
   push:
     branches: [ "master" ]
     paths:
       - "EQEmu Patcher/**"
+      - "build.sh"
       - ".github/workflows/build.yml"
-  pull_request:
-    branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 env:
-  VERSION: 1.0.6
-  BUILD_CONFIGURATION: Release
+  VERSION: 1.1.0
   SERVER_NAME: ${{ vars.SERVER_NAME == '' && 'EQEmu Patcher' || vars.SERVER_NAME }}
   FILE_NAME: ${{ vars.FILE_NAME == '' && 'eqemupatcher' || vars.FILE_NAME }}
-  # where the patcher reads filelist_rof.yml: Spire's public patch address
+  # Spire's public patch address: the file list and, from now on, the patcher
   FILELIST_URL: ${{ vars.FILELIST_URL == '' && 'http://15.204.93.56:3000/api/v1/patch/' || vars.FILELIST_URL }}
-  # where the patcher updates itself from: this repository's releases
-  PATCHER_URL: ${{ vars.PATCHER_URL == '' && format('https://github.com/{0}/releases/latest/download/', github.repository) || vars.PATCHER_URL }}
+  PATCHER_URL: ${{ vars.PATCHER_URL == '' && 'http://15.204.93.56:3000/api/v1/patch/' || vars.PATCHER_URL }}
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.1.3
-
-    - name: Restore NuGet packages
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: cd "EQEmu Patcher" && nuget restore "EQEmu Patcher.sln"
+      uses: actions/checkout@v4
 
     - name: Build
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: |
-        cd "EQEmu Patcher" && msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:VERSION="${{ env.VERSION }}.${{ github.run_number }}" /p:FILELIST_URL=${{env.FILELIST_URL}} /p:PATCHER_URL=${{env.PATCHER_URL}} /p:SERVER_NAME="${{env.SERVER_NAME}}" /p:FILE_NAME="${{env.FILE_NAME}}" "EQEmu Patcher.sln"
+      run: VERSION="${{ env.VERSION }}.${{ github.run_number }}" ./build.sh out
 
-    - name: Hash the patcher for self-update
-      shell: pwsh
+    - name: Name and hash the patcher
       run: |
-        $exe = "EQEmu Patcher/EQEmu Patcher/bin/Release/${{env.FILE_NAME}}.exe"
-        if ("${{env.FILE_NAME}}" -ne "eqemupatcher") { Move-Item "EQEmu Patcher/EQEmu Patcher/bin/Release/eqemupatcher.exe" $exe }
+        mv out/eqemupatcher.exe "${FILE_NAME}.exe" 2>/dev/null || cp out/eqemupatcher.exe "${FILE_NAME}.exe"
         # the patcher compares this with the upper-case MD5 of itself
-        (Get-FileHash -Algorithm MD5 $exe).Hash.ToUpper() | Set-Content -NoNewline "${{env.FILE_NAME}}-hash.txt"
+        md5sum "${FILE_NAME}.exe" | cut -d' ' -f1 | tr a-f A-F | tr -d '\n' > "${FILE_NAME}-hash.txt"
 
-    # Patchers built before Spire hosted the patch read filelist_rof.yml from
-    # the latest release, before they update themselves: without one they
-    # stop. This copy points them at Spire for one patch, and they update to
-    # this build, which reads Spire directly.
+    # Old patchers read the file list here before they update themselves, and
+    # stop without one: this copy of Spire's points them at Spire.
     - name: Fetch the published file list from Spire
-      shell: pwsh
       run: |
-        Invoke-WebRequest -Uri "${{env.FILELIST_URL}}rof/filelist_rof.yml" -OutFile filelist_rof.yml
-        if (-not (Select-String -Path filelist_rof.yml -Pattern '^downloads:' -Quiet)) { throw "Spire returned no file list: publish the client patch first" }
+        curl -fsSL -o filelist_rof.yml "${FILELIST_URL}rof/filelist_rof.yml"
+        grep -q '^downloads:' filelist_rof.yml || { echo "Spire returned no file list: publish the client patch first"; exit 1; }
 
     - name: Release
       uses: "marvinpinto/action-automatic-releases@latest"
@@ -74,6 +58,6 @@ jobs:
         prerelease: false
         title: "${{ env.VERSION }}.${{ github.run_number }}"
         files: |
-          EQEmu Patcher/EQEmu Patcher/bin/Release/${{env.FILE_NAME}}.exe
-          ${{env.FILE_NAME}}-hash.txt
+          ${{ env.FILE_NAME }}.exe
+          ${{ env.FILE_NAME }}-hash.txt
           filelist_rof.yml

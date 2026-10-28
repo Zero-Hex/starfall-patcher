@@ -71,3 +71,5 @@
 *.PDF   diff=astextplain
 *.rtf   diff=astextplain
 *.RTF   diff=astextplain
+# shell scripts run on Linux (build.sh): Unix line endings
+*.sh text eol=lf
