@@ -31,8 +31,14 @@ In Spire, *Starfall → Client Patch*:
   `<channel address><name>-hash.txt` and `<channel address><name>.exe`. The beta
   patcher has its own file name (e.g. `starfallpatcher-beta.exe`). Testers run it
   in a copy of the client folder of its own: the two patchers keep their
-  settings in the same `eqemupatcher.yml`, and the live patcher leaves Beta-only
+  settings in the same `starfall.yml`, and the live patcher leaves Beta-only
   files where it finds them.
+- **Its own file names.** The patcher keeps its settings in `starfall.yml` and
+  the downloaded file list in `starfall_filelist.yml`, not the stock
+  `eqemupatcher.yml` and `filelist.yml` every server's eqemupatcher writes. A
+  client folder another server's patcher has used (Project Quarm's writes
+  `clientVersion: Quarm`) no longer stops it, and a settings file it cannot read
+  starts over with defaults.
 
 To set that up, on the Spire server:
 

@@ -209,11 +209,11 @@ namespace EQEmu_Patcher
 
             string webUrl = $"{filelistUrl}{suffix}/filelist_{suffix}.yml";
 
-            string response = await DownloadFile(cts, webUrl, "filelist.yml");
+            string response = await DownloadFile(cts, webUrl, IniLibrary.FilelistFile);
             if (response != "")
             {
                 webUrl = $"{filelistUrl}/filelist_{ suffix}.yml";
-                response = await DownloadFile(cts, webUrl, "filelist.yml");
+                response = await DownloadFile(cts, webUrl, IniLibrary.FilelistFile);
                 if (response != "")
                 {
                     MessageBox.Show("Failed to fetch filelist from " + webUrl + ": " + response);
@@ -248,7 +248,7 @@ namespace EQEmu_Patcher
 
             FileList filelist;
 
-            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
+            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\{IniLibrary.FilelistFile}"))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
@@ -457,7 +457,7 @@ namespace EQEmu_Patcher
             StatusLibrary.SetProgress(0);
             FileList filelist;
 
-            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
+            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\{IniLibrary.FilelistFile}"))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
@@ -600,7 +600,7 @@ namespace EQEmu_Patcher
             if (isLoading) return;
             isAutoPlay = chkAutoPlay.Checked;
             IniLibrary.instance.AutoPlay = (isAutoPlay) ? "true" : "false";
-            if (isAutoPlay) StatusLibrary.Log("To disable autoplay: edit eqemupatcher.yml or wait until next patch.");
+            if (isAutoPlay) StatusLibrary.Log($"To disable autoplay: edit {IniLibrary.ConfigFile} or wait until next patch.");
 
             IniLibrary.Save();
         }
